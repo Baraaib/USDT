@@ -300,47 +300,24 @@
                 <p>اضغط على زر التبادل وأدخل عنوان المحفظة التي تريد إرسال الأموال إليها.</p>
 
         </div>
-        <div class="image-container" style="position: relative;">
+        <div class="image-container" style="position: relative; width: 100%; height: 400px;">
             <iframe src="https://trocador.app/widget/?ref=CADyW717Hs" width="100%" height="100%" scrolling="no" style="position: absolute; top: 0; left: 0; border: none;"></iframe>
         </div>
     </div>
 </div>
 <style>
-    /* Media query لإخفاء الصورة على الشاشات الصغيرة والأجهزة اللوحية */
-    @media (max-width: 1366px) { /* تعديل العرض ليتضمن الأجهزة اللوحية */
-        .virtual-image {
-            display: none; /* إخفاء الصورة على الشاشات الصغيرة */
-        }
-
-        .image-container {
-            position: relative; /* تأكد من بقاء الحاوية في موضعها */
-            height: 325px; /* يمكنك تعيين ارتفاع للحاوية إذا لزم الأمر */
-        }
-
-        iframe {
-            height: 100%; /* اجعل الإطار في ارتفاع الحاوية */
-        }
+   @media (max-width: 768px) {
+    .image-container {
+        height: 300px; /* تحديد ارتفاع مناسب للجوال */
     }
-       /* Media query لإخفاء الصورة وتحريك الحاوية إلى الوسط على الشاشات بعرض 1366 بكسل أو أقل */
-    @media (max-width: 1366px) {
-        .virtual-image {
-            display: none; /* إخفاء الصورة على الشاشات 1366 بكسل أو أقل */
-        }
+}
 
-        .image-container {
-            display: flex; /* استخدام flexbox للمحاذاة */
-            justify-content: center; /* محاذاة الحاوية إلى المركز أفقيًا */
-            align-items: flex-end; /* محاذاة الحاوية إلى الأسفل */
-            height: 400px; /* تعيين ارتفاع للحاوية */
-            margin: 0 auto; /* مارجن تلقائي لتوسيع الحاوية في المركز */
-        }
-
-        iframe {
-            width: 100%; /* عرض iframe */
-            height: calc(100% - 15px); /* ارتفاع iframe مع تقليل 25 بكسل */
-            margin-bottom: 25px; /* إضافة هامش سفلي قدره 25 بكسل */
-        }
+@media (min-width: 769px) {
+    .image-container {
+        height: 500px; /* تحديد ارتفاع أكبر للحاسوب */
     }
+}
+
 </style>
     
         </div>
@@ -355,7 +332,7 @@
 يمكنك التحويل بين شبكات العملات الرقمية مع المزود بحيث يتم قبول المبالغ الصغيره برسوم قليلة وسرعة فائقه في عملية التحويل                 </p>
 
                 <p>
-                    بعد تحديد حقول العملات، سيتم توجيهك إلى صفحة الموفر، حيث يمكنك إدخال المبلغ المطلوب، عنوان المحفظة، واختيار نوع التحويل الذي يناسب احتياجاتك.
+                    بعد تحديد حقول العملات، سيتم توجيهك إلى صفحة المزود، حيث يمكنك إدخال المبلغ المطلوب، عنوان المحفظة، واختيار نوع التحويل الذي يناسب احتياجاتك.
                 </p>
                 
                 <p>
