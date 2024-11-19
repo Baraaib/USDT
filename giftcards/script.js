@@ -105,7 +105,7 @@ $(document).ready(function () {
         }, 1000);
 
         // بناء الرابط للطلب
-        const apiUrl = `https://giftcard-project-01l3.onrender.com/api/order_giftcard?product_id=${productId}&ticker_from=${tickerFrom}&network_from=${networkFrom}&amount=${amount}&email=${email}`;
+        const apiUrl = `https://giftcards-v72q.onrender.com/api/order_giftcard?product_id=${productId}&ticker_from=${tickerFrom}&network_from=${networkFrom}&amount=${amount}&email=${email}`;
 
         // إرسال الطلب
         fetch(apiUrl)
