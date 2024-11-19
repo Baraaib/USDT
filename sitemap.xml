@@ -22,3 +22,10 @@
     <changefreq>daily</changefreq>
   </url>
 </urlset>
+
+ <url>
+    <loc>https://cryptolike.store/sitemap.rss</loc>
+    <lastmod>2024-10-05</lastmod>
+    <changefreq>daily</changefreq>
+  </url>
+</urlset>
