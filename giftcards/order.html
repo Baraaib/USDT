@@ -55,27 +55,30 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* إضافة ظل خفيف للحقل */
         }
 
-        .select2-container {
-            width: 98% !important; /* ملء 98% من عرض الحاوية */
-            display: inline-block; /* إضافة display inline-block */
-        }
+.select2-container {
+    width: 98% !important; /* ملء 98% من عرض الحاوية */
+    display: inline-block; /* إضافة display inline-block */
+}
 
-        .select2-container--default .select2-selection--single {
-            height: 40px; /* ارتفاع الحقل */
-            border-radius: 20px; /* حواف دائرية */
-            border: 1px solid #ccc; /* حدود */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* ظل خفيف */
-        }
+.select2-container--default .select2-selection--single {
+    height: 40px; /* ارتفاع الحقل */
+    border-radius: 20px; /* حواف دائرية */
+    border: 1px solid #ccc; /* حدود */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* ظل خفيف */
 
-        .select2-container--default .select2-selection--single .select2-selection__rendered {
-            line-height: 50px; /* محاذاة النص عموديًا */
-            padding-left: 10px; /* مساحة داخلية */
-        }
+}
 
-        .select2-container--default .select2-selection--single .select2-selection__arrow {
-            height: 50px; /* ارتفاع السهم */
-            right: 10px; /* موقع السهم */
-        }
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 50px; /* محاذاة النص عموديًا */
+    padding-left: 10px; /* مساحة داخلية */
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 50px; /* ارتفاع السهم */
+    right: 10px; /* موقع السهم */
+}
+
+
 
         button {
             width: 100%;
@@ -98,26 +101,28 @@
             vertical-align: middle; /* محاذاة الأيقونة مع النص */
         }
 
+        /* دائرة التحميل في أسفل النموذج على اليسار */
         #loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* خلفية شفافة */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10000; /* أعلى من باقي العناصر */
-            display: none; /* مخفية في البداية */
+          position: fixed; /* لتثبيت الحاوية في وسط الشاشة */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* خلفية شفافة */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000; /* أعلى من باقي العناصر */
+    display: none; /* مخفية في البداية */*/
         }
 
+        /* التأكد من أن الدائرة المركزية ما زالت هنا */
         .loader {
-            border: 8px solid transparent;
-            border-top: 8px solid black;
-            border-right: 8px solid purple;
-            border-bottom: 8px solid transparent;
-            border-left: 8px solid purple;
+            border: 8px solid transparent; /* جعل الحدود شفافة */
+            border-top: 8px solid black; /* لون الجزء العلوي أسود */
+            border-right: 8px solid purple; /* لون الجزء الأيمن بنفسجي */
+            border-bottom: 8px solid transparent; /* الجزء السفلي شفاف */
+            border-left: 8px solid purple; /* لون الجزء الأيسر بنفسجي */
             border-radius: 50%;
             width: 60px;
             height: 60px;
@@ -130,65 +135,56 @@
         }
 
         #countdown-text {
-            color: #333;
-            font-size: 18px;
-            margin-top: 15px;
+            color: #333; /* لون النص */
+            font-size: 18px; /* حجم النص */
+            margin-top: 15px; /* مسافة فوق النص */
         }
-
+        
         .button-container {
-            text-align: center;
-            margin-top: 20px;
-        }
+    text-align: center; /* توسيط النص داخل الحاوية */
+    margin-top: 20px; /* إضافة مسافة من الأعلى إذا لزم الأمر */
+}
 
-        .back-button {
-            width: 20%;
-            padding: 10px;
-            font-size: 16px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
 
-        .back-button:hover {
-            background-color: #45a049;
-        }
+.back-button {
+    width: 20%; /* تحديد عرض الزر بنسبة 50% */
+    padding: 10px; /* إضافة padding لجعل الزر أكبر */
+    font-size: 16px; /* ضبط حجم النص داخل الزر */
+    background-color: #4CAF50; /* لون الخلفية */
+    color: white; /* لون النص */
+    border: none; /* إزالة الحدود الافتراضية */
+    border-radius: 5px; /* إضافة زوايا مدورة */
+    cursor: pointer; /* تغيير شكل المؤشر عند المرور فوق الزر */
+}
 
-        /* تنسيق التنبيه أسفل الحقل */
-        #amount-message {
-            color: #f1c40f;
-            font-size: 14px;
-            text-align: center;
-            margin-top: 10px;
-        }
+.back-button:hover {
+    background-color: #45a049; /* تغيير لون الخلفية عند التمرير فوق الزر */
+}
     </style>
 </head>
 <body>
     <div class="button-container">
-        <button id="back-button" class="back-button">Back</button>
-    </div>
+    <button id="back-button" class="back-button">Back</button>
+</div>
 
     <div class="form-container">
         <label for="card-name">اسم البطاقة:</label>
         <input type="text" id="card-name" value="" readonly>
-
+        
         <label for="product-id"></label>
-        <input type="hidden" id="product-id" value="">
+<input type="hidden" id="product-id" value="">
 
         <label for="amount">اختر المبلغ:</label>
         <div id="amount-container">
-            <select id="amount" name="amount" onchange="toggleCustomAmount()">
+            <select id="amount" name="amount">
                 <!-- سيتم إضافة القيم هنا بناءً على البيانات الممررة -->
             </select>
-            <input type="number" id="custom-amount" placeholder="MAX 5000" style="display: none;" onchange="showMessage()">
+            <input type="number" id="custom-amount" placeholder="MAX 5000" style="display: none;">
         </div>
-
-        <!-- التنبيه أسفل حقل المبلغ -->
-        <p id="amount-message">
-            سيتم دفع المبلغ حسب العملة المحلية للدولة المختارة. إذا أردت زيادة المبلغ، يمكنك شراء عدة بطاقات.
-        </p>
-
+   <!-- التنبيه أسفل حقل المبلغ -->
+   <p id="amount-message">
+    سيتم دفع المبلغ حسب العملة المحلية للدولة المختارة. إذا أردت زيادة المبلغ، يمكنك شراء عدة بطاقات.
+</p>
         <label for="payment-method">اختر وسيلة الدفع:</label>
         <select id="payment-method" class="select2">
             <option value="SOL">SOL (Mainnet) <img src="https://trocador.app/static/img/icons/sol.svg" class="currency-icon" alt="SOL"></option>
@@ -206,21 +202,39 @@
 
         <button type="button" id="submit-button">إرسال الطلب</button>
     </div>
+<!-- إضافة الحاوية الجديدة -->
+<div class="form-container" style="margin-top: 15px; direction: rtl;"> <!-- إضافة الهامش هنا -->
+    <h2>التعليمات</h2>
+    <p>1- بعد اختيار البطاقة يرجى ملئ النموذج بالمبلغ واختيار عملة الدفع وعنوان بريدك الالكتروني.</p>
+    <p>2- يتم ارسال تفاصيل البطاقة الى بريدك الالكتروني (يرجى التحقق من بريدك الالكتروني قبل الشروع في عملية الشراء لتجنب ارسال بيانات البطاقة الى عنوان بريد خاطئ).</p>
+    <p>3- بعد ملئ النموذج وارسال الطلب نقوم بمعالجة طلبك ويتم تحويلك الى صفحة الدفع الخاصة بمزود البطاقات (احتفظ بمعرف الطلب (ID)) في حال حدوث أي خطأ يمكنك التواصل مع المزود بشكل مباشر 24/7 عبر التيلغرام @TrocadorSupportBot باللغة العربية.</p>
+    <p>4- نحن لا نحتفظ بأي أموال من أموالك هذه العملية تتم بشكل تلقائي ولا تتطلب التسجيل.</p>
+    <p>5- يرجى التحقق من اسم العملة والشبكة قبل ارسال الأموال مثال (SOL (Mainnet)) أي عملة Solana لشبكة Solana الرئيسية.</p>
+    <p>6- لماذا يثق بنا الجميع؟ نحن نقدم خدمة البحث عن أفضل المزودين للبطاقات وأكثرهم موثوقية.</p>
+    <p>7- هل نحصل على رسوم إضافية مقابل خدماتنا؟  </p>
+لا، لا نفرض أي رسوم على المستخدمين. منصتنا مجانية تمامًا للاستخدام. تأتي الرسوم التي نتلقاها من برنامج الشراكة الخاص بنا مع مقدمي خدمات البطاقات , يتيح لنا هذا تقديم الخدمة دون تحميل المستخدمين أي تكاليف اضافبة.
 
-    <!-- التعليمات -->
-    <div class="form-container" style="margin-top: 15px; direction: rtl;">
-        <h2>التعليمات</h2>
-        <p>1- بعد اختيار البطاقة يرجى ملئ النموذج بالمبلغ واختيار عملة الدفع وعنوان بريدك الالكتروني.</p>
-        <p>2- يتم ارسال تفاصيل البطاقة الى بريدك الالكتروني...</p>
-        <!-- باقي التعليمات هنا -->
-    </div>
+    <p>للتواصل معنا بشكل مباشر يمكنك زيارة قسم <strong><a href="https://cryptolike.store/contactus" target="_blank">Contact Us</a></strong>.</p>
+
+</div>
+
 
     <div id="loading-screen" style="display: none;">
-        <div class="تم تعديل الكود ليشمل التنبيه أسفل حقل المبلغ بشكل دائم. كما تم إضافة الملاحظة التي تشير إلى إمكانية شراء عدة بطاقات بشكل دائم في أسفل هذا الحقل.
+        <div class="loader"></div>
+        <p id="countdown-text">You will be redirected to the payment link in <span id="countdown">30</span> seconds.</p>
+    </div>
 
-### ملاحظات:
-1. **حقل المبلغ**: تم تضمين حقل اختيار المبلغ مع إمكانية إضافة مبلغ مخصص.
-2. **التنبيه**: التنبيه الذي يشير إلى إمكانية شراء عدة بطاقات ظهر أسفل حقل المبلغ.
-3. **إضافة تعليمات إضافية**: التعليمات الجديدة أُدرجت بشكل صحيح في النموذج.
-
-يمكنك الآن تضمين الكود في صفحتك واختباره. إذا كنت بحاجة إلى المزيد من التعديلات أو المساعدة في دمجها مع الأنظمة الأخرى، فلا تتردد في طلب المزيد.
+    <!-- تضمين مكتبة JavaScript لمكتبة Select2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('#payment-method').select2();
+    });
+        document.getElementById('back-button').addEventListener('click', function() {
+    window.history.back();
+});
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
