@@ -5,7 +5,7 @@ $(document).ready(function () {
             if (!option.id) {
                 return option.text; // إذا لم يكن هناك خيار، أعد النص فقط
             }
-            var $option = $(
+            var $option = $( 
                 '<span>' + option.text + ' <img src="' + getIconSrc(option.id) + '" class="currency-icon" alt="' + option.text + '"></span>'
             );
             return $option;
@@ -55,6 +55,13 @@ $(document).ready(function () {
         const networkFrom = getNetworkFrom(tickerFrom);
         const amount = $('#amount').is(':visible') ? $('#amount').val() : $('#custom-amount').val();
         const email = $('#email').val();
+
+        // إضافة logs للتحقق من القيم المرسلة
+        console.log('Product ID:', productId);
+        console.log('Ticker From:', tickerFrom);
+        console.log('Network From:', networkFrom);
+        console.log('Amount:', amount);
+        console.log('Email:', email);
 
         // إزالة الرسائل السابقة
         $('.error-message').remove();
@@ -110,6 +117,7 @@ $(document).ready(function () {
         // إرسال الطلب
         fetch(apiUrl)
             .then(response => {
+                console.log('Response Status:', response.status);
                 if (!response.ok) {
                     return response.text().then(text => {
                         throw new Error(`HTTP Status: ${response.status}, Response: ${text}`);
@@ -118,6 +126,7 @@ $(document).ready(function () {
                 return response.json();
             })
             .then(data => {
+                console.log('API Response:', data); // طباعة الاستجابة من الـ API
                 if (data.trade_id) {
                     window.open(`https://trocador.app/giftcardscheckout/${data.trade_id}`, '_blank');
                 }
