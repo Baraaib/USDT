@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.png" type="image/png">
     <title>جسر العملات الرقمية</title>
     <style>
@@ -12,6 +11,7 @@
             padding: 20px;
             background: radial-gradient(circle, #5e2b7d 40%, #000000 100%);
             color: white;
+            direction: rtl; /* تغيير اتجاه النص */
         }
 
         .button-container {
@@ -60,11 +60,12 @@
             justify-content: space-between;
             align-items: center;
             margin-top: 30px;
+            direction: rtl; /* تغيير اتجاه النص */
         }
 
         .content {
             width: 50%;
-            text-align: left;
+            text-align: right; /* محاذاة النص لليمين */
         }
 
         .content h2 {
@@ -81,32 +82,30 @@
 
         .image-container {
             width: 45%;
-            position: relative; /* لجعل العناصر داخلها في موضع نسبي */
+            position: relative;
         }
 
         .image-container img {
             width: 100%;
-            border-radius: 20px; /* حواف دائرية 20 بكسل للصورة */
+            border-radius: 20px;
         }
 
-        /* New button styles */
         .buy-button {
             display: inline-block;
             padding: 10px 20px;
-            background-color: transparent; /* نفس لون الخلفية */
+            background-color: transparent;
             color: white;
-            border: 2px solid white; /* إطار أبيض */
-            border-radius: 20px; /* حواف دائرية 20 بكسل */
+            border: 2px solid white;
+            border-radius: 20px;
             text-align: center;
             text-decoration: none;
-            transition: all 0.3s ease; /* تأثيرات التحول */
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            animation: colorChange 2s infinite; /* تغيير اللون */
-            margin-top: 20px; /* لإضافة مساحة فوق الزر */
+            animation: colorChange 2s infinite;
+            margin-top: 20px;
         }
 
-        /* إضافة تأثير الوهج */
         .buy-button::before {
             content: '';
             position: absolute;
@@ -114,10 +113,10 @@
             left: -15px;
             right: -15px;
             bottom: -15px;
-            border-radius: 20px; /* حواف دائرية 20 بكسل */
+            border-radius: 20px;
             background: rgba(255, 255, 255, 0.1);
-            filter: blur(20px); /* وهج حول الزر */
-            z-index: -1; /* وضعه خلف الزر */
+            filter: blur(20px);
+            z-index: -1;
         }
 
         @keyframes glowing {
@@ -131,20 +130,18 @@
                 border-color: white;
             }
             50% {
-                border-color: #ffcc00; /* اللون الثاني للإطار */
+                border-color: #ffcc00;
             }
         }
 
-        /* تأثير تكبير الزر عند مرور الماوس عليه */
         .buy-button:hover {
-            transform: scale(1.1); /* تكبير الزر */
-            animation: none; /* إيقاف تغيير اللون أثناء التمرير */
+            transform: scale(1.1);
+            animation: none;
         }
 
-        /* Media query for screens smaller than 768px */
         @media (max-width: 768px) {
             .content-wrapper {
-                flex-direction: column; /* Stack elements vertically */
+                flex-direction: column;
                 text-align: center;
             }
 
@@ -158,31 +155,28 @@
             }
         }
 
-        /* New section styles */
         .virtual-mastercard-section, .bridge-crypto-section, .giftcards-section {
             margin-top: 50px;
         }
 
-        /* Styles for the icons */
         .icon-container {
-            position: absolute; /* لجعل الأيقونات في موقع معين */
-            top: 50%; /* وسط الصورة عموديًا */
-            left: 50%; /* وسط الصورة أفقيًا */
-            transform: translate(-50%, -50%); /* لتحريك الأيقونات إلى المركز */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             display: flex;
-            flex-wrap: wrap; /* لف الأيقونات إذا لزم الأمر */
-            justify-content: center; /* توسيط الأيقونات */
-            pointer-events: none; /* لجعل الأيقونات غير قابلة للنقر */
-            animation: float 6s infinite; /* حركة ديناميكية */
+            flex-wrap: wrap;
+            justify-content: center;
+            pointer-events: none;
+            animation: float 6s infinite;
         }
 
         .icon-container img {
-            width: 50px; /* حجم الأيقونات */
-            margin: 5px; /* مسافة بين الأيقونات */
-            animation: move 10s infinite alternate; /* حركة الأيقونات */
+            width: 50px;
+            margin: 5px;
+            animation: move 10s infinite alternate;
         }
 
-        /* حركة ديناميكية للأيقونات */
         @keyframes float {
             0% {
                 transform: translate(-50%, -50%) translateY(0);
@@ -200,29 +194,54 @@
                 transform: translateX(0) translateY(0);
             }
             100% {
-                transform: translateX(calc(-50% + 20px)) translateY(calc(-50% + 20px)); /* حركات عشوائية */
+                transform: translateX(calc(-50% + 20px)) translateY(calc(-50% + 20px));
             }
         }
-        /* Media query for screens smaller than 768px for Bridge Crypto section */
-/* Media query for screens smaller than 768px for Bridge Crypto section */
-@media (max-width: 768px) {
-    .bridge-crypto-section .content-wrapper iframe {
-        width: 50%; /* اجعل عرض الإطار 80% */
-        height: auto; /* اجعل الارتفاع تلقائي */
-    }
-}
 
-
-.answer {
-            background-color: #333; /* خلفية رمادية داكنة */
-            color: white; /* لون النص */
-            padding: 10px; /* حشو داخلي */
-            border-radius: 5px; /* زوايا دائرية */
-            display: inline-block; /* لجعل الخلفية تأخذ فقط مساحة النص */
-            margin-top: 5px; /* مسافة أعلى الجواب */
-            margin-bottom: 10px; /* مسافة أسفل الجواب */
+        .answer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 5px;
+            margin-bottom: 10px;
         }
 
+        @media (max-width: 1366px) {
+            .virtual-image {
+                display: none;
+            }
+
+            .image-container {
+                position: relative;
+                height: 325px;
+            }
+
+            iframe {
+                height: 100%;
+            }
+        }
+
+        @media (max-width: 1366px) {
+            .virtual-image {
+                display: none;
+            }
+
+            .image-container {
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
+                height: 400px;
+                margin: 0 auto;
+            }
+
+            iframe {
+                width: 100%;
+                height: calc(100% - 15px);
+                margin-bottom: 25px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -233,74 +252,52 @@
         <span class="separator">|</span>
         <span class="nav-item"><a href="https://cryptolike.store/bridge">جسر العملات الرقمية</a></span>
         <span class="separator">|</span>
-        <span class="nav-item"><a href="https://cryptolike.store/giftcards">بطاقات الهدايا</a></span>
-        <span class="separator">|</span>
         <span class="nav-item"><a href="https://cryptolike.store/contactus">اتصل بنا</a></span>
     </div>
 
-
-    <!-- Adding the description section for the homepage with image on the right -->
-<div class="content-wrapper">
-    <div class="content">
-        <h2>Welcome to pusdt.io | Crypto Services Hub</h2>
-        <p>
-            1- What is cross-chain currency exchange? <br>
-            <span class="answer">Cross-chain exchange allows users to swap cryptocurrencies between different blockchain networks without the need for a third party. For example, you can convert USDT from the Ethereum network to the TRX network.</span>
-        </p>
-        <p>
-            2- How do I verify the reliability of exchange providers on your site? <br>
-            <span class="answer">We evaluate providers using strict criteria that include security, speed, reasonable fees, and reviews from previous users. We ensure that only the most reliable and transparent providers in the market are featured on our site.</span>
-        </p>
-        <p>
-            3- Can I track the status of the exchange? <br>
-            <span class="answer">Yes, most of the platforms we recommend offer tools to track the exchange status in real-time using the order ID.</span>
-        </p>
-        <p>
-            4- Does pusdt.io charge any fees from users? <br>
-            <span class="answer">No, we do not charge any fees from users. Our platform is completely free to use. The fees we receive come from our partnership program with the exchange providers. This allows us to offer the service without passing any additional costs to the users.</span>
-        </p>
-        <p>
-            5- Why can I trust you? <br>
-            <span class="answer">No registration and no need to share your personal details. We don't hold your funds; all exchanges take place instantly in fully automatic mode.</span>
-        </p>
-    </div>
+    <div class="content-wrapper">
+        <div class="content">
+            <h2>مرحبًا بك في كريبتو لايك Cryptolike.store| مركز خدمات العملات الرقمية</h2>
+            <p>
+                1- ما هو تبادل العملات عبر الشبكات المختلفة؟ <br>
+                <span class="answer">يتيح تبادل العملات عبر الشبكات المختلفة للمستخدمين تبديل العملات الرقمية بين شبكات بلوكتشين مختلفة دون الحاجة إلى طرف ثالث. على سبيل المثال، يمكنك تحويل USDT من شبكة Ethereum إلى شبكة TRX.</span>
+            </p>
+            <p>
+                2- كيف يمكنني التحقق من مصداقية مقدمي الخدمات على موقعكم؟ <br>
+                <span class="answer">نقوم بتقييم مقدمي الخدمة بناءً على معايير صارمة تشمل الأمان، السرعة، الرسوم المعقولة، والتعليقات من المستخدمين السابقين. نحن نتأكد من عرض فقط مقدمي الخدمة الأكثر موثوقية وشفافية في السوق على موقعنا.</span>
+            </p>
+            <p>
+                3- هل يمكنني تتبع حالة التبادل؟ <br>
+                <span class="answer">نعم، معظم المنصات التي نوصي بها تقدم أدوات لتتبع حالة التبادل في الوقت الفعلي باستخدام معرّف الطلب.</span>
+            </p>
+            <p>
+                4- هل يتقاضى موقع pusdt.io أي رسوم من المستخدمين؟ <br>
+                <span class="answer">لا، نحن لا نتقاضى أي رسوم من المستخدمين. منصتنا مجانية تمامًا للاستخدام. الرسوم التي نحصل عليها تأتي من برنامج الشراكة مع مقدمي خدمات التبادل. وهذا يتيح لنا تقديم الخدمة دون تحميل المستخدمين أي تكاليف إضافية.</span>
+            </p>
+            <p>
+                5- لماذا يمكنني الوثوق بك؟ <br>
+                <span class="answer">لا حاجة للتسجيل ولا لمشاركة تفاصيلك الشخصية. نحن لا نحتفظ بأموالك؛ كل عمليات التبادل تتم على الفور وبطريقة تلقائية تمامًا.</span>
+            </p>
+        </div>
     
         <div class="image-container">
-            <img src="https://pusdt.io/images/bridge/1.jpg" alt="Buy Virtual MasterCard with crypto, Buy GiftCards with Crypto, Bridge Crypto">
+            <img src="https://github.com/Baraaib/USDT/blob/master/images/bridge.jpg?raw=true" alt="اشترِ بطاقة ماستر كارد افتراضية بالعملات الرقمية، اشترِ بطاقات هدايا، استخدم عملاتك الافتراضية بحرية.">
         </div>
     </div>
+</body>
+</html>
+
     
    
 <!-- New Virtual MasterCard Section -->
 <div class="virtual-mastercard-section">
     <div class="content-wrapper">
         <div class="content">
-            <h2>You can exchange with the provider | Trocador</h2>
-            <p>
-            Trade Cryptocurrency Privately
-Fast. Safe. Easy.
-            </p>
-            Choose the currency you want to send from.
-             </p>
-            Enter the amount you wish to send.
-
-              </p>
-        
-               </p>
-               Click the exchange button and enter the wallet address where you want to receive the funds.
-
-                </p>
-                 </p>
-                 Important Note: Please verify the wallet address and network before proceeding with the exchange process to ensure the safety of your funds.
-
-                </p>
-
-                </p>
-                Enjoy your money transfer experience with ease and security!
-                </p>
-                </p>
-                Important Advice: Avoid sending amounts less than 50 USDT or the equivalent in other currencies. This is due to high transaction fees for small amounts, which may reduce the value of the received amount.
-                </p>
+            <h2>يمكنك التبادل مع المزود | Trocador</h2>
+                <p>تبادل العملات الرقمية بشكل خاص<br>سريع وآمن وسهل.</p>
+                <p>اختر العملة التي تريد إرسالها.</p>
+                <p>أدخل المبلغ الذي ترغب في إرساله.</p>
+                <p>اضغط على زر التبادل وأدخل عنوان المحفظة التي تريد إرسال الأموال إليها.</p>
 
         </div>
         <div class="image-container" style="position: relative;">
@@ -354,22 +351,24 @@ Fast. Safe. Easy.
     <div class="bridge-crypto-section">
         <div class="content-wrapper">
             <div class="content">
-                <h2>Bridge Crypto | FixedFloat</h2>
+                <h2>جسر العملات الرقمية | FixedFloat</h2>
 
                 <p>
-                After selecting the currency fields, you are directed to the provider's page, where you can enter the desired amount, wallet address, and choose the type of transfer that suits your needs.
+                    بعد تحديد حقول العملات، سيتم توجيهك إلى صفحة الموفر، حيث يمكنك إدخال المبلغ المطلوب، عنوان المحفظة، واختيار نوع التحويل الذي يناسب احتياجاتك.
+                </p>
+                
                 <p>
-
+                    السعر الثابت: 1% إذا اخترت السعر الثابت.
                 </p>
-                Fixed Rate: 1% if you opt for a fixed rate.
-                   </p>
-                    </p>
-                Floating Rate: 0.5% if you opt for a floating rate based on market conditions.
+                
+                <p>
+                    السعر العائم: 0.5% إذا اخترت السعر العائم استنادًا إلى ظروف السوق.
                 </p>
-                 </p>
-                 Enjoy a seamless and secure transfer experience with flexible options that meet your financial needs.
-
+                
+                <p>
+                    استمتع بتجربة تحويل سلسة وآمنة مع خيارات مرنة تلبي احتياجاتك المالية.
                 </p>
+                
             </div>
             <div class="image-container">
                 <img src="https://pusdt.io/images/1.jpg" alt="Bridge Crypto - Transfer cryptocurrencies between chains">
@@ -464,55 +463,7 @@ Fast. Safe. Easy.
 
 
 
-    <!-- New Gift Cards Section -->
-    <div class="giftcards-section">
-        <div class="content-wrapper">
-            <div class="content">
-                <h2>swap with | Swapuz!</h2>
-                <p>
-                 Simple
-exchange
-809
-+
-cryptocurrencies
-Fast crypto swaps with Web3 connection
-                </p>
-            </div>
-<div class="image-container" style="position: relative;">
-    <img src="https://pusdt.io/images/1.jpg" alt="Gift Cards" style="width: 100%; height: auto;">
-    <iframe id="frame" 
-            src="https://widget.swapuz.com/?amount=0.1&coin=ETH&ref=781fb243-4718-4f7f-b7ca-284318199d5b&lang=en" 
-            width="465" 
-            height="420" 
-            frameborder="0" 
-            scrolling="no" 
-            style="border: none; position: absolute; top: calc(50% + 20px); left: 50%; transform: translate(-50%, -50%);">
-    </iframe>
-</div>
-
-        </div>
-    </div>
-<style>
-    /* تنسيقات للشاشات الصغيرة */
-    @media (max-width: 768px) {
-        .giftcards-section .image-container {
-            position: relative; /* تأكد من أن الحاوية للصور تمتلك موضعاً نسبياً */
-        }
-
-        .giftcards-section iframe {
-            width: 100% !important; /* جعل العرض 100% */
-            height: 110% !important; /* جعل الارتفاع 100% */
-            position: absolute !important; /* التأكد من أن التضمين في موضع مطلق */
-            top: 10%; /* وضع التضمين في منتصف الصورة مع تحريكه قليلاً للأعلى */
-            left: 0; /* محاذاة إلى اليسار */
-            transform: none; /* إلغاء أي تحويل */
-        }
-
-        .giftcards-section img {
-            height: auto; /* جعل الصورة تناسب ارتفاع الحاوية */
-        }
-    }
-</style>
+  
 <!-- Footer Section -->
 <footer style="background-color: #333; color: white; padding: 20px 0; text-align: center; margin-top: 50px;">
     <div style="margin-bottom: 10px; font-size: 18px; font-weight: bold;">
