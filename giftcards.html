@@ -237,19 +237,43 @@
                 right: 5px;
             }
         }
+        /* إضافة خاصية لتحديد اتجاه النصوص من اليمين لليسار */
+body, .container, .box, .button-container {
+    direction: rtl;
+}
+
+/* تغيير تنسيق النصوص داخل الحقول والقوائم لتكون محاذاة لليمين */
+input, select, button {
+    text-align: right;
+}
+
+/* تغيير تنسيق العناوين لتكون محاذاة لليمين */
+h1, h2, h3, .label {
+    text-align: right;
+}
+
+/* محاذاة الأزرار بشكل صحيح */
+button.buy-button {
+    text-align: right;
+}
+
+/* محاذاة الفقرات والأسئلة داخل الـ FAQ */
+.faq-item {
+    text-align: right;
+}
     </style>
 </head>
 <body>
     <div class="button-container">
-        <span class="nav-item"><a href="https://soomx.com">الصفحة الرئيسية</a></span>
+        <span class="nav-item"><a href="https://cryptolike.store/">الصفحة الرئيسية</a></span>
         <span class="separator">|</span>
-        <span class="nav-item"><a href="https://soomx.com/virtualmastercard">بطاقة ماستر كارد الافتراضية</a></span>
+        <span class="nav-item"><a href="https://cryptolike.store/virtualmastercard">بطاقة ماستر كارد الافتراضية</a></span>
         <span class="separator">|</span>
-        <span class="nav-item"><a href="https://soomx.com/bridge">جسر العملات الرقمية</a></span>
+        <span class="nav-item"><a href="https://cryptolike.store/bridge">جسر العملات الرقمية</a></span>
         <span class="separator">|</span>
-        <span class="nav-item"><a href="https://soomx.com/giftcards">بطاقات الهدايا</a></span>
+        <span class="nav-item"><a href="https://cryptolike.store/giftcards">بطاقات الهدايا</a></span>
         <span class="separator">|</span>
-        <span class="nav-item"><a href="https://soomx.com/contactus">اتصل بنا</a></span>
+        <span class="nav-item"><a href="https://cryptolike.store/contactus">اتصل بنا</a></span>
     </div>
 
     <img src="https://pusdt.io/images/logo.jpg" alt="Logo" class="logo">
