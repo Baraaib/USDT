@@ -1,12 +1,324 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Web3 Project</title>
+    <link rel="icon" href="/icon.png" type="image/png">
+    <title>pusdt.io | مركز خدمات العملات الرقمية</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: radial-gradient(circle, #5e2b7d 40%, #000000 100%);
+            color: white;
+            direction: rtl; /* لجعل النصوص تظهر من اليمين لليسار */
+            margin: 0; /* إزالة الهوامش التلقائية */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        @media (max-width: 740px) {
+            .button-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                gap: 10px;
+            }
+        }
+
+        .nav-item a {
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 10px 15px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-item a:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .separator {
+            margin: 0 10px;
+            color: white;
+        }
+
+        .logo {
+            display: block;
+            margin: 20px auto;
+            width: 300px;
+            height: 150px;
+            border-radius: 20px;
+        }
+
+        .content-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            flex-direction: row; /* تغيير الاتجاه إلى صف عادي */        }
+
+        .content {
+            width: 50%;
+            text-align: right; /* لجعل النصوص تكون محاذية لليمين */
+        }
+
+        .content h2 {
+            font-size: 36px;
+            color: #ffcc00;
+            
+        }
+
+        .content p {
+            font-size: 20px; /* تكبير حجم النص */
+    font-weight: bold; /* جعل النص عريض */
+    color: white; /* لون النص */
+    background-color: rgba(128, 128, 128, 0.2); /* خلفية رمادية بنصف الشفافية */
+    padding: 10px; /* إضافة بعض المساحة حول النص */
+    border-radius: 5px; /* لإعطاء الحواف شكل مستدير */
+            line-height: 1.6;
+        }
+
+        .image-container {
+            width: 45%;
+            position: relative;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+        }
+
+        .buy-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            border-radius: 20px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: colorChange 2s infinite;
+            margin-top: 20px;
+        }
+
+        .buy-button::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            filter: blur(20px);
+            z-index: -1;
+        }
+
+        @keyframes glowing {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+
+        @keyframes colorChange {
+            0%, 100% {
+                border-color: white;
+            }
+            50% {
+                border-color: #ffcc00;
+            }
+        }
+
+        .buy-button:hover {
+            transform: scale(1.1);
+            animation: none;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .content {
+                width: 100%;
+            }
+
+            .image-container {
+                width: 100%;
+                margin-top: 20px;
+            }
+        }
+
+        .virtual-mastercard-section, .bridge-crypto-section, .giftcards-section {
+            margin-top: 50px;
+        }
+
+        .icon-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            pointer-events: none;
+            animation: float 6s infinite;
+        }
+
+        .icon-container img {
+            width: 50px;
+            margin: 5px;
+            animation: move 10s infinite alternate;
+        }
+
+        @keyframes float {
+            0% { transform: translate(-50%, -50%) translateY(0); }
+            50% { transform: translate(-50%, -50%) translateY(-10px); }
+            100% { transform: translate(-50%, -50%) translateY(0); }
+        }
+
+        @keyframes move {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(calc(-50% + 20px)) translateY(calc(-50% + 20px)); }
+        }
+        /* إضافة خاصية لتحديد اتجاه النصوص من اليمين لليسار */
+body, .container, .box, .button-container {
+    direction: rtl;
+}
+
+/* تغيير تنسيق النصوص داخل الحقول والقوائم لتكون محاذاة لليمين */
+input, select, button {
+    text-align: right;
+}
+
+/* تغيير تنسيق العناوين لتكون محاذاة لليمين */
+h1, h2, h3, .label {
+    text-align: right;
+}
+
+/* محاذاة الأزرار بشكل صحيح */
+button.buy-button {
+    text-align: right;
+}
+
+/* محاذاة الفقرات والأسئلة داخل الـ FAQ */
+.faq-item {
+    text-align: right;
+}
+.site-name-container {
+    display: flex;
+    justify-content: center; /* لتوسيط النص أفقيًا */
+    align-items: center; /* لتوسيط النص عموديًا */
+    height: 20vh; /* تحديد ارتفاع الحاوية ليملأ جزء من الصفحة فقط */
+    margin-top: 0; /* إزالة الهامش العلوي */
+    margin-bottom: 0; /* إزالة الهامش السفلي */
+}
+
+.site-name {
+    font-size: 60px;
+    font-weight: bold;
+    color: #8a2be2; /* اللون البنفسجي */
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-shadow: 
+        0 0 10px white, /* تأثير الضوء الأبيض */
+        0 0 20px white, 
+        0 0 30px #8a2be2, /* تأثير البنفسجي */
+        0 0 40px #8a2be2, 
+        0 0 50px #8a2be2; /* تعتيم اللون البنفسجي */
+}
+    </style>
 </head>
 <body>
-    <h1>Welcome to My Web3 Project</h1>
-    <p>This is a simple webpage hosted on GitHub Pages.</p>
+    <div class="button-container">
+        <span class="nav-item"><a href="https://cryptolike.store/">الصفحة الرئيسية</a></span>
+        <span class="separator">|</span>
+        <span class="nav-item"><a href="https://cryptolike.store/virtualmastercard">بطاقة ماستر كارد الافتراضية</a></span>
+        <span class="separator">|</span>
+        <span class="nav-item"><a href="https://cryptolike.store/bridge">جسر العملات الرقمية</a></span>
+        <span class="separator">|</span>
+        <span class="nav-item"><a href="https://cryptolike.store/giftcards">بطاقات الهدايا</a></span>
+        <span class="separator">|</span>
+        <span class="nav-item"><a href="https://cryptolike.store/contactus">اتصل بنا</a></span>
+    </div>
+
+  <!-- إضافة اسم الموقع مع تأثيرات الحواف -->
+  <div class="site-name-container">
+    <h1 class="site-name">Cryptolike.store</h1>
+</div>
+
+    <!-- Adding the description section for the homepage with image on the right -->
+    <div class="content-wrapper">
+        <div class="content">
+            <h2>مرحباً بكم في Cryptolike.store| مركز خدمات العملات الرقمية</h2>
+            <p>
+                وجهتك الموحّدة لخدمات العملات الرقمية. سواء كنت تبحث عن شراء بطاقة ماستر كارد افتراضية باستخدام العملات الرقمية، أو استكشاف مجموعة من بطاقات الهدايا، أو نقل أصولك الرقمية عبر سلاسل مختلفة باستخدام خدمة جسر العملات الرقمية، نحن هنا لتلبية احتياجاتك. 
+                نحن نجعل المعاملات الآمنة والسريعة والمريحة في متناول يدك باستخدام USDT والعملات الرقمية الأخرى.
+            </p>
+            
+        </div>
+        <div class="image-container">
+            <img src="https://github.com/Samihibrahim-2024/Soomx/blob/master/images/soomx.jpg?raw=true" alt="شراء بطاقة ماستر كارد افتراضية باستخدام العملات الرقمية">
+        </div>
+    </div>
+
+    <!-- New Virtual MasterCard Section -->
+    <div class="virtual-mastercard-section">
+        <div class="content-wrapper">
+            <div class="content">
+                <h2>بطاقة ماستر كارد الافتراضية | متجر كريبتو لايك </h2>
+                <p>
+                    احصل على بطاقة ماستر كارد افتراضية بسرعة وأمان في soomx.com! خدمتنا تتيح لك شراء بطاقة افتراضية يمكن استخدامها في عمليات الشراء والدفع عبر الإنترنت. مع بضع نقرات فقط، يمكنك الوصول إلى مزايا بطاقة ماستر كارد دون الحاجة للبنوك التقليدية. استمتع بحرية ومرونة استخدام العملات الرقمية في معاملاتك اليومية!
+                </p>
+                <a href="https://pusdt.io/virtualmastercard" class="buy-button" alt="شراء بطاقة ماستر كارد افتراضية - pusdt.io">شراء بطاقة ماستر كارد افتراضية</a>
+            </div>
+            <div class="image-container">
+                <img src="https://github.com/Samihibrahim-2024/Soomx/blob/master/images/mastercard/m2.jpg?raw=true" alt="بطاقة ماستر كارد افتراضية">
+            </div>
+        </div>
+    </div>
+
+    <!-- New Bridge Crypto Section -->
+    <div class="bridge-crypto-section">
+        <div class="content-wrapper">
+            <div class="content">
+                <h2>جسر العملات الرقمية |  متجر كريبتو لايك</h2>
+                <p>
+                    قم بنقل عملاتك الرقمية بين الشبكات بكل سهولة وأمان عبر pusdt.io! يسمح لك جسر العملات الرقمية بتحويل أصولك الرقمية بسرعة وأمان. استمتع بالموثوقية والسرعة وسهولة التحويل بين العملات الرقمية المختلفة. مع pusdt.io، يمكنك إدارة أصولك بكل ثقة.
+                </p>
+                <a href="https://pusdt.io/bridge" class="buy-button" alt="جسر العملات الرقمية - pusdt.io">اكتشف جسر العملات الرقمية</a>
+            </div>
+            <div class="image-container">
+                <img src="https://github.com/Samihibrahim-2024/Soomx/blob/master/images/bridge/bridge%20crypto.jpg?raw=true" alt="جسر العملات الرقمية">
+            </div>
+        </div>
+    </div>
+
+    <!-- New Gift Cards Section -->
+    <div class="giftcards-section">
+        <div class="content-wrapper">
+            <div class="content">
+                <h2>بطاقات الهدايا |  متجر كريبتو لايك</h2>
+                <p>
+                    احصل على بطاقات هدايا متنوعة من خلال pusdt.io! نوفر لك مجموعة واسعة من بطاقات الهدايا لتمكنك من استخدامها في عمليات الشراء عبر الإنترنت. استفد من خدماتنا السهلة والآمنة للحصول على بطاقات هدايا تتيح لك التسوق من مختلف المتاجر الإلكترونية.
+                </p>
+                <a href="https://pusdt.io/giftcards" class="buy-button" alt="شراء بطاقات الهدايا - pusdt.io">شراء بطاقات الهدايا</a>
+            </div>
+            <div class="image-container">
+                <img src="https://github.com/Samihibrahim-2024/Soomx/blob/master/images/giftcards/giftcards.jpg?raw=true" alt="بطاقات الهدايا">
+            </div>
+        </div>
+    </div>
 </body>
 </html>
