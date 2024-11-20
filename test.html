@@ -3,106 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supported Currencies and Exchange Rates</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        h1 {
-            color: #333;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .loading {
-            text-align: center;
-            font-size: 20px;
-        }
-    </style>
+    <title>Available Currencies</title>
 </head>
 <body>
-    <h1>Supported Currencies and Exchange Rates</h1>
-    <div id="loading" class="loading">Loading currencies...</div>
-    <table id="currencyTable" style="display:none;">
-        <thead>
-            <tr>
-                <th>Currency</th>
-                <th>Blockchain Network</th>
-                <th>Receive</th>
-                <th>Send</th>
-                <th>Logo</th>
-            </tr>
-        </thead>
-        <tbody id="currencyList">
-        </tbody>
-    </table>
+    <h1>Available Currencies from FixedFloat</h1>
+    <button onclick="getCurrencies()">Get Currencies</button>
+    <div id="currencies"></div>
 
     <script>
-        const apiKey = 'l9zXjAOHF1Kq6TBZaNKBiD52ALX9Uhmo56qYrDBo';
-        const apiSecret = 'G0JdfTNxGCK4vG68eYCOyrEKiCIusKO6wcdhO6Tn';
-        const url = 'https://ff.io/api/v2/ccies';
-        const headers = {
-            "Accept": "application/json",
-            "X-API-KEY": apiKey,
-            "X-API-SIGN": generateSignature(), // You need to implement generateSignature function
-            "Content-Type": "application/json; charset=UTF-8"
+        const apiKey = 'l9zXjAOHF1Kq6TBZaNKBiD52ALX9Uhmo56qYrDBo';  // Replace with your actual API key
+        const apiSecret = 'G0JdfTNxGCK4vG68eYCOyrEKiCIusKO6wcdhO6Tn';  // Replace with your actual API secret
+
+        // Function to generate signature
+        const generateSignature = (data) => {
+            const encoder = new TextEncoder();
+            const key = encoder.encode(apiSecret);
+            const text = encoder.encode(data);
+            return crypto.subtle.importKey(
+                "raw", key, { name: "HMAC", hash: { name: "SHA-256" } },
+                false, ["sign"]
+            ).then(secretKey => {
+                return crypto.subtle.sign("HMAC", secretKey, text).then(sig => {
+                    const hashArray = Array.from(new Uint8Array(sig)); // convert ArrayBuffer to byte array
+                    return hashArray.map(byte => byte.toString(16).padStart(2, '0')).join(''); // convert to hex string
+                });
+            });
         };
 
-        async function fetchCurrencies() {
+        const getCurrencies = async () => {
+            const url = 'https://ff.io/api/v2/ccies';
+            const headers = {
+                'Accept': 'application/json',
+                'X-API-KEY': apiKey,
+                'Content-Type': 'application/json; charset=UTF-8',
+            };
+
+            const signature = await generateSignature(''); // No data, passing empty string
+
+            // Update headers with the generated signature
+            headers['X-API-SIGN'] = signature;
+
             try {
                 const response = await fetch(url, {
                     method: 'POST',
-                    headers: headers
+                    headers: headers,
                 });
+
                 const data = await response.json();
                 if (data.code === 0) {
                     displayCurrencies(data.data);
                 } else {
-                    throw new Error('Failed to load currencies');
+                    console.error('Error:', data.msg);
+                    document.getElementById("currencies").innerText = "Error: " + data.msg;
                 }
             } catch (error) {
-                console.error('Error:', error);
-                alert('Failed to load currencies');
+                console.error('Request failed', error);
+                document.getElementById("currencies").innerText = "Request failed: " + error.message;
             }
-        }
+        };
 
-        function displayCurrencies(currencies) {
-            const currencyList = document.getElementById('currencyList');
-            const loading = document.getElementById('loading');
-            loading.style.display = 'none';
-            const currencyTable = document.getElementById('currencyTable');
-            currencyTable.style.display = 'block';
-
-            currencies.forEach(currency => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${currency.name}</td>
-                    <td>${currency.network}</td>
-                    <td>${currency.recv ? 'Yes' : 'No'}</td>
-                    <td>${currency.send ? 'Yes' : 'No'}</td>
-                    <td><img src="${currency.logo}" alt="${currency.name}" width="30"></td>
-                `;
-                currencyList.appendChild(row);
-            });
-        }
-
-        function generateSignature() {
-            // This is a placeholder. Replace this function with the proper HMAC SHA256 signature generation.
-            return ''; // You need to calculate and return the actual signature
-        }
-
-        window.onload = fetchCurrencies;
+        const displayCurrencies = (currencies) => {
+            const container = document.getElementById("currencies");
+            container.innerHTML = ''; // Clear previous data
+            if (currencies && currencies.length > 0) {
+                const list = document.createElement('ul');
+                currencies.forEach(currency => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${currency.code} - ${currency.name}`;
+                    list.appendChild(listItem);
+                });
+                container.appendChild(list);
+            } else {
+                container.innerText = 'No currencies available.';
+            }
+        };
     </script>
 </body>
 </html>
