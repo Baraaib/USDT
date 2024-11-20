@@ -3,84 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Available Currencies</title>
+    <title>Supported Currencies</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
             background-color: #f4f4f4;
-        }
-        h1 {
-            text-align: center;
-            padding: 20px;
-            background-color: #4CAF50;
-            color: white;
-        }
-        #currencies {
-            padding: 20px;
-        }
-        .currency-item {
-            background-color: white;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.1);
-        }
-        .currency-item img {
-            width: 50px;
-            height: 50px;
-        }
-        .currency-item h3 {
             margin: 0;
-            color: #333;
+            padding: 20px;
+        }
+        .currency {
+            background-color: #fff;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .currency img {
+            width: 30px;
+            height: 30px;
+        }
+        .currency strong {
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
-    <h1>Available Currencies</h1>
-    <div id="currencies"></div>
+
+    <h1>Supported Currencies</h1>
+    <div id="currencies-list"></div>
 
     <script>
-        const apiKey = 'l9zXjAOHF1Kq6TBZaNKBiD52ALX9Uhmo56qYrDBo';  // API Key
-        const apiSecret = 'G0JdfTNxGCK4vG68eYCOyrEKiCIusKO6wcdhO6Tn';  // API Secret
+        // Your API key and API secret
+        const apiKey = "l9zXjAOHF1Kq6TBZaNKBiD52ALX9Uhmo56qYrDBo";
+        const apiSecret = "G0JdfTNxGCK4vG68eYCOyrEKiCIusKO6wcdhO6Tn";
 
-        // Generate API signature (for demonstration purposes, this is a simplified version of how you might generate the sign)
-        function generateSign() {
-            return '';  // Normally, here you would use a SHA256 function to generate the sign
+        // Function to generate the HMAC SHA256 signature
+        function generateSign(secret) {
+            const crypto = window.crypto || window.msCrypto; // For IE
+            const encoder = new TextEncoder();
+            const data = encoder.encode(''); // Empty string for no parameters
+            return crypto.subtle.importKey(
+                'raw',
+                encoder.encode(secret),
+                { name: 'HMAC', hash: { name: 'SHA-256' } },
+                false,
+                ['sign']
+            )
+            .then(key => crypto.subtle.sign('HMAC', key, data))
+            .then(signature => {
+                let hexString = '';
+                new Uint8Array(signature).forEach(byte => {
+                    hexString += ('00' + byte.toString(16)).slice(-2);
+                });
+                return hexString;
+            });
         }
 
-        fetch('https://ff.io/api/v2/ccies', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'X-API-KEY': apiKey,
-                'X-API-SIGN': generateSign(),  // API Sign - typically generated using a hashing function
-                'Content-Type': 'application/json; charset=UTF-8'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.code === 0) {
-                let htmlContent = '<ul>';
-                data.data.forEach(currency => {
-                    htmlContent += `
-                        <li class="currency-item">
-                            <h3>${currency.name} (${currency.coin})</h3>
-                            <img src="${currency.logo}" alt="${currency.name}" />
-                            <p><strong>Network:</strong> ${currency.network}</p>
-                            <p><strong>Receive:</strong> ${currency.recv ? 'Yes' : 'No'}</p>
-                            <p><strong>Send:</strong> ${currency.send ? 'Yes' : 'No'}</p>
-                        </li>
-                    `;
-                });
-                htmlContent += '</ul>';
-                document.getElementById('currencies').innerHTML = htmlContent;
-            } else {
-                document.getElementById('currencies').innerHTML = '<p>Error fetching currencies. Please try again later.</p>';
-            }
-        })
-        .catch(error => console.error('Error fetching currencies:', error));
+        // Fetch and display supported currencies
+        function fetchCurrencies() {
+            generateSign(apiSecret).then(signature => {
+                fetch("https://ff.io/api/v2/ccies", {
+                    method: "POST",
+                    headers: {
+                        "Accept": "application/json",
+                        "X-API-KEY": apiKey,
+                        "X-API-SIGN": signature,
+                        "Content-Type": "application/json; charset=UTF-8"
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.code === 0) {
+                        const currencies = data.data;
+                        const currenciesList = document.getElementById("currencies-list");
+                        currencies.forEach(currency => {
+                            let currencyDiv = document.createElement('div');
+                            currencyDiv.classList.add('currency');
+                            currencyDiv.innerHTML = `
+                                <strong>${currency.name} (${currency.coin})</strong><br>
+                                <img src="${currency.logo}" alt="${currency.name}" /><br>
+                                <strong>Network:</strong> ${currency.network}
+                            `;
+                            currenciesList.appendChild(currencyDiv);
+                        });
+                    } else {
+                        console.error('Error:', data.msg);
+                    }
+                })
+                .catch(error => console.error('Request failed', error));
+            });
+        }
+
+        // Load currencies on page load
+        window.onload = function() {
+            fetchCurrencies();
+        };
     </script>
 </body>
 </html>
