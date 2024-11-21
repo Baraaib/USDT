@@ -14,21 +14,7 @@
         "denominations": "range",
         "product_id": "52215"
     },
-    {
-        "name": "Starbucks",
-        "category": "Food",
-        "currency_code": "AED",
-        "description": "Starbucks stands out as the number 1 choice of Coffee in the region. Sourced for the season, and crafted with care.",
-        "terms_and_conditions": "https://d2vjldeiu1zgxb.cloudfront.net/resources/SBUX-AE/terms_consumer.md",
-        "how_to_use": "https://d2vjldeiu1zgxb.cloudfront.net/resources/SBUX-AE/redeem_markdown.md",
-        "expiry_and_validity": "Expires 6 months from issue date",
-        "card_image_url": "https://gift.runa.io/static/product_assets/SBUX-AE/SBUX-AE-card.png",
-        "country": "UAE",
-        "min_amount": 50.0,
-        "max_amount": 500.0,
-        "denominations": "['50.00', '100.00', '300.00', '500.00']",
-        "product_id": "52199"
-    },
+  
     {
         "name": "Nike",
         "category": "Apparel",
