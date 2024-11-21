@@ -322,7 +322,7 @@
             countrySelect.value = 'saudi-arabia'; // تعيين السعودية كخيار افتراضي
     
             // عرض بطاقات السعودية عند تحميل الصفحة
-            fetchGiftCards('giftcards/giftcards_data.json');
+            fetchGiftCards('https://cryptolike.store/tcards/tcards.json');
     
             // إضافة مستمع لحدث تغيير الدولة
             countrySelect.addEventListener('change', function() {
@@ -335,7 +335,7 @@
                 } else if (selectedCountry === 'germany') {
                     filePath = 'giftcards/germany_giftcards_data.json';
                 } else if (selectedCountry === 'saudi-arabia') {
-                    filePath = 'giftcards/giftcards_data.json'; // مسار السعودية
+                    filePath = 'https://cryptolike.store/tcards/tcards.json'; // مسار السعودية
                 }
     
                 // جلب البيانات إذا تم اختيار دولة
