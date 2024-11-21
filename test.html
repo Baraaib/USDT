@@ -1,64 +1,40 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اختبار الأرقام المتاحة</title>
-</head>
-<body>
-
-    <h1>اختبار الأرقام المتاحة من SMS-Activate</h1>
-
-    <form id="numberForm">
-        <label for="country">اختر الدولة:</label>
-        <select id="country" name="country">
-            <option value="0">روسيا</option>
-            <option value="1">أوكرانيا</option>
-            <option value="2">كازاخستان</option>
-        </select>
-        <br><br>
-
-        <label for="operator">اختر المزود:</label>
-        <select id="operator" name="operator">
-            <option value="megafon">Megafon</option>
-            <option value="mts">MTS</option>
-            <option value="beeline">Beeline</option>
-            <option value="tele2">Tele2</option>
-        </select>
-        <br><br>
-
-        <button type="button" onclick="getAvailableNumbers()">اعرض الأرقام المتاحة</button>
-    </form>
-
-    <h2>الأرقام المتاحة:</h2>
-    <pre id="response"></pre>
-
+    <title>Test SMS-Activate API</title>
     <script>
-        // API Key
-        const apiKey = '65bfc34f83d929dc0f293A08A0169e1b';
+        function fetchNumbers() {
+            var apiKey = '65bfc34f83d929dc0f293A08A0169e1b'; // ضع مفتاح الـ API هنا
+            var country = 0; // اختر الدولة (0 = روسيا)
+            var operator = 'megaFon'; // اختر المشغل (مثال: megaFon)
 
-        // Function to fetch available numbers based on country and operator
-        function getAvailableNumbers() {
-            // Get selected values
-            const country = document.getElementById('country').value;
-            const operator = document.getElementById('operator').value;
+            // بناء الرابط مع المعلمات
+            var url = `https://api.sms-activate.guru/stubs/handler_api.php?api_key=${apiKey}&action=getNumbersStatus&country=${country}&operator=${operator}`;
 
-            // Build the API URL
-            const url = `https://api.sms-activate.guru/stubs/handler_api.php?api_key=${apiKey}&action=getNumbersStatus&country=${country}&operator=${operator}`;
-
-            // Send the request to the API
+            // إرسال الطلب باستخدام Fetch API
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
-                    // Display the response in the <pre> tag
-                    document.getElementById('response').textContent = JSON.stringify(data, null, 2);
+                    // عرض النتيجة
+                    document.getElementById("result").innerHTML = JSON.stringify(data, null, 2);
                 })
                 .catch(error => {
-                    console.error('Error fetching data:', error);
-                    document.getElementById('response').textContent = 'حدث خطأ أثناء الاتصال بـ API.';
+                    // في حالة حدوث خطأ في الاتصال
+                    document.getElementById("result").innerHTML = "Error connecting to the API.";
                 });
         }
     </script>
+</head>
+<body>
+
+    <h1>Test SMS-Activate API</h1>
+    <p>Click the button to fetch available numbers for a specific country and operator.</p>
+
+    <button onclick="fetchNumbers()">Fetch Numbers</button>
+
+    <pre id="result"></pre>
 
 </body>
 </html>
