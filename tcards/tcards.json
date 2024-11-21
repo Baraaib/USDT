@@ -2,7 +2,7 @@
     {
         "name": "بطاقة كريبتو لايك | USDT",
         "category": "USDT",
-        "currency": "دولار امريكي",
+        "currency": "5 USDT",
         "description": "احصل على بطاقة كريبتو لايك برصيد عملة  التيثر الرقمية وقم بصرفها مباشرة الى عنوان محفظتك ",
         "how_to_use": "عند طلب شراء البطاقة يجب اختيار الشبكة وعنوان المحفظة المرسل اليه . بعد اتمام عملية الدفع يتم تحويل رصيد البطاقة مباشرة الى  عنوان محفظتك .",
         "card_image_url": "https://github.com/Baraaib/USDT/blob/master/images/Tcards/c5.png?raw=true",
@@ -14,7 +14,7 @@
     {
         "name": "بطاقة كريبتو لايك | USDT",
         "category": "USDT",
-        "currency": "دولار امريكي",
+        "currency": "10USDT",
         "description": "احصل على بطاقة كريبتو لايك برصيد عملة  التيثر الرقمية وقم بصرفها مباشرة الى عنوان محفظتك ",
         "how_to_use": "عند طلب شراء البطاقة يجب اختيار الشبكة وعنوان المحفظة المرسل اليه . بعد اتمام عملية الدفع يتم تحويل رصيد البطاقة مباشرة الى  عنوان محفظتك .",
         "card_image_url": "https://github.com/Baraaib/USDT/blob/master/images/Tcards/c10.png?raw=true",
@@ -37,7 +37,7 @@
     {
         "name": "بطاقة كريبتو لايك | USDT",
         "category": "USDT",
-        "currency": "50 USDT",
+        "currency": "50USDT",
         "description": "احصل على بطاقة كريبتو لايك برصيد عملة  التيثر الرقمية وقم بصرفها مباشرة الى عنوان محفظتك ",
         "how_to_use": "عند طلب شراء البطاقة يجب اختيار الشبكة وعنوان المحفظة المرسل اليه . بعد اتمام عملية الدفع يتم تحويل رصيد البطاقة مباشرة الى  عنوان محفظتك .",
         "card_image_url": "https://github.com/Baraaib/USDT/blob/master/images/Tcards/c50.png?raw=true",
@@ -47,8 +47,8 @@
     },
     {
         "name": "بطاقة كريبتو لايك | USDT",
-        "category": "USDT",
-        "currency": "100 USDT",
+        "category": "100USDT",
+        "currency": "USDT",
         "description": "احصل على بطاقة كريبتو لايك  برصيد  عملة  التيثر الرقمية وقم بصرفها مباشرة الى عنوان محفظتك ",
         "how_to_use": "عند طلب شراء البطاقة يجب اختيار الشبكة وعنوان المحفظة المرسل اليه . بعد اتمام عملية الدفع يتم تحويل رصيد البطاقة مباشرة الى  عنوان محفظتك .",
         "card_image_url": "https://github.com/Baraaib/USDT/blob/master/images/Tcards/c100.png?raw=true",
