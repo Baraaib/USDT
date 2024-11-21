@@ -3,42 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test SMS-Activate API</title>
+    <title>Choose Available Numbers</title>
     <script>
+        // دالة لتحميل الأرقام المتاحة من API
         function fetchNumbers() {
             var apiKey = '65bfc34f83d929dc0f293A08A0169e1b'; // ضع مفتاح الـ API هنا
             var country = 0; // اختر الدولة (0 = روسيا)
-            var operator = 'megaFon'; // اختر المشغل (مثال: megaFon)
+            var operator = 'any'; // اختر المشغل (مثال: megaFon)
 
             // بناء الرابط مع المعلمات
             var url = `https://api.sms-activate.guru/stubs/handler_api.php?api_key=${apiKey}&action=getNumbersStatus&country=${country}&operator=${operator}`;
 
             // إرسال الطلب باستخدام Fetch API
             fetch(url)
-                .then(response => {
-                    // التحقق من حالة الاستجابة (status code)
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    return response.json();
-                })
+                .then(response => response.json())
                 .then(data => {
-                    // عرض النتيجة
-                    document.getElementById("result").innerHTML = JSON.stringify(data, null, 2);
+                    // عرض النتيجة في القائمة
+                    displayNumbers(data);
                 })
                 .catch(error => {
-                    // في حالة حدوث خطأ في الاتصال
-                    document.getElementById("result").innerHTML = `Error: ${error.message}`;
+                    document.getElementById("result").innerHTML = "Error connecting to the API.";
                 });
+        }
+
+        // دالة لعرض الأرقام المتاحة في واجهة المستخدم
+        function displayNumbers(data) {
+            var numberList = document.getElementById("numberList");
+            numberList.innerHTML = ''; // إعادة تعيين القائمة
+
+            for (var key in data) {
+                if (data.hasOwnProperty(key)) {
+                    // إنشاء عنصر جديد لكل مشغل مع العدد المتاح من الأرقام
+                    var listItem = document.createElement("li");
+                    listItem.textContent = `Operator: ${key} - Available Numbers: ${data[key]}`;
+                    numberList.appendChild(listItem);
+                }
+            }
         }
     </script>
 </head>
 <body>
 
-    <h1>Test SMS-Activate API</h1>
-    <p>Click the button to fetch available numbers for a specific country and operator.</p>
+    <h1>Choose Available Numbers</h1>
+    <button onclick="fetchNumbers()">Fetch Available Numbers</button>
 
-    <button onclick="fetchNumbers()">Fetch Numbers</button>
+    <ul id="numberList">
+        <!-- سيتم عرض الأرقام المتاحة هنا -->
+    </ul>
 
     <pre id="result"></pre>
 
