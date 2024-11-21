@@ -570,7 +570,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const data = await response.json();
 
             if (data.trade_id) {
-                window.open(`https://trocador.app/prepaidcards/checkout/${data.trade_id}`, '_blank');
+                window.location.href = `https://trocador.app/prepaidcards/checkout/${data.trade_id}`;
             } else {
                 alert('فشل في معالجة الطلب');
             }
