@@ -1,82 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Available Currencies</title>
+    <title>اختبار الأرقام المتاحة</title>
 </head>
 <body>
-    <h1>Available Currencies from FixedFloat</h1>
-    <button onclick="getCurrencies()">Get Currencies</button>
-    <div id="currencies"></div>
+
+    <h1>اختبار الأرقام المتاحة من SMS-Activate</h1>
+
+    <form id="numberForm">
+        <label for="country">اختر الدولة:</label>
+        <select id="country" name="country">
+            <option value="0">روسيا</option>
+            <option value="1">أوكرانيا</option>
+            <option value="2">كازاخستان</option>
+        </select>
+        <br><br>
+
+        <label for="operator">اختر المزود:</label>
+        <select id="operator" name="operator">
+            <option value="megafon">Megafon</option>
+            <option value="mts">MTS</option>
+            <option value="beeline">Beeline</option>
+            <option value="tele2">Tele2</option>
+        </select>
+        <br><br>
+
+        <button type="button" onclick="getAvailableNumbers()">اعرض الأرقام المتاحة</button>
+    </form>
+
+    <h2>الأرقام المتاحة:</h2>
+    <pre id="response"></pre>
 
     <script>
-        const apiKey = 'l9zXjAOHF1Kq6TBZaNKBiD52ALX9Uhmo56qYrDBo';  // Replace with your actual API key
-        const apiSecret = 'G0JdfTNxGCK4vG68eYCOyrEKiCIusKO6wcdhO6Tn';  // Replace with your actual API secret
+        // API Key
+        const apiKey = '65bfc34f83d929dc0f293A08A0169e1b';
 
-        // Function to generate signature
-        const generateSignature = (data) => {
-            const encoder = new TextEncoder();
-            const key = encoder.encode(apiSecret);
-            const text = encoder.encode(data);
-            return crypto.subtle.importKey(
-                "raw", key, { name: "HMAC", hash: { name: "SHA-256" } },
-                false, ["sign"]
-            ).then(secretKey => {
-                return crypto.subtle.sign("HMAC", secretKey, text).then(sig => {
-                    const hashArray = Array.from(new Uint8Array(sig)); // convert ArrayBuffer to byte array
-                    return hashArray.map(byte => byte.toString(16).padStart(2, '0')).join(''); // convert to hex string
+        // Function to fetch available numbers based on country and operator
+        function getAvailableNumbers() {
+            // Get selected values
+            const country = document.getElementById('country').value;
+            const operator = document.getElementById('operator').value;
+
+            // Build the API URL
+            const url = `https://api.sms-activate.guru/stubs/handler_api.php?api_key=${apiKey}&action=getNumbersStatus&country=${country}&operator=${operator}`;
+
+            // Send the request to the API
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    // Display the response in the <pre> tag
+                    document.getElementById('response').textContent = JSON.stringify(data, null, 2);
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                    document.getElementById('response').textContent = 'حدث خطأ أثناء الاتصال بـ API.';
                 });
-            });
-        };
-
-        const getCurrencies = async () => {
-            const url = 'https://ff.io/api/v2/ccies';
-            const headers = {
-                'Accept': 'application/json',
-                'X-API-KEY': apiKey,
-                'Content-Type': 'application/json; charset=UTF-8',
-            };
-
-            const signature = await generateSignature(''); // No data, passing empty string
-
-            // Update headers with the generated signature
-            headers['X-API-SIGN'] = signature;
-
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: headers,
-                });
-
-                const data = await response.json();
-                if (data.code === 0) {
-                    displayCurrencies(data.data);
-                } else {
-                    console.error('Error:', data.msg);
-                    document.getElementById("currencies").innerText = "Error: " + data.msg;
-                }
-            } catch (error) {
-                console.error('Request failed', error);
-                document.getElementById("currencies").innerText = "Request failed: " + error.message;
-            }
-        };
-
-        const displayCurrencies = (currencies) => {
-            const container = document.getElementById("currencies");
-            container.innerHTML = ''; // Clear previous data
-            if (currencies && currencies.length > 0) {
-                const list = document.createElement('ul');
-                currencies.forEach(currency => {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = `${currency.code} - ${currency.name}`;
-                    list.appendChild(listItem);
-                });
-                container.appendChild(list);
-            } else {
-                container.innerText = 'No currencies available.';
-            }
-        };
+        }
     </script>
+
 </body>
 </html>
