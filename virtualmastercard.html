@@ -391,24 +391,22 @@ button.buy-button {
                     <option value="1000">1000</option>
                 </select>
     
-                <div class="label purchase-title">اختر طريقة الدفع</div>
-                <div class="field-container">
-                    <select class="field half-width" id="payment-method">
-                        <option value="" disabled selected>اختر طريقة الدفع</option>
-                        <option value="USDT (TRC20)" data-icon="https://trocador.app/static/img/icons/usdt.svg">USDT (TRC20)</option>
-                        <option value="USDT (SOL)" data-icon="https://trocador.app/static/img/icons/usdt.svg">USDT (SOL)</option>
-                        <option value="USDT (ERC20)" data-icon="https://trocador.app/static/img/icons/usdt.svg">USDT (ERC20)</option>
-                        <option value="USDT (Polygon)" data-icon="https://trocador.app/static/img/icons/usdt.svg">USDT (Polygon)</option>
-                        <option value="USDT (BSC)" data-icon="https://trocador.app/static/img/icons/usdt.svg">USDT (BSC)</option>
-                        <option value="USDT (Toncoin)" data-icon="https://trocador.app/static/img/icons/usdt.svg">USDT (Toncoin)</option>
-                        <option value="USDC (SOL)" data-icon="https://trocador.app/static/img/icons/usdc.svg">USDC (SOL)</option>
-                        <option value="BTC (Mainnet)" data-icon="https://trocador.app/static/img/icons/btc.svg">BTC (Mainnet)</option>
-                        <option value="TRX (Mainnet)" data-icon="https://trocador.app/static/img/icons/trx.svg">TRX (Mainnet)</option>
-                        <option value="SOL (Mainnet)" data-icon="https://trocador.app/static/img/icons/sol.svg">SOL (Mainnet)</option>
-                        <option value="ETH (Mainnet)" data-icon="https://trocador.app/static/img/icons/eth.svg">ETH (Mainnet)</option>
-                        <option value="TON (Mainnet)" data-icon="https://trocador.app/static/img/icons/ton.svg">TON (Mainnet)</option>
-                    </select>
-                </div>
+                <select class="field half-width" id="payment-method">
+                    <option value="" disabled>اختر طريقة الدفع</option>
+                    <option value="USDT (TRC20)" data-icon="https://trocador.app/static/img/icons/usdt.svg" selected>USDT (TRC20)</option>
+                    <option value="USDT (SOL)" data-icon="https://trocador.app/static/img/icons/usdt.svg">USDT (SOL)</option>
+                    <option value="USDT (ERC20)" data-icon="https://trocador.app/static/img/icons/usdt.svg">USDT (ERC20)</option>
+                    <option value="USDT (Polygon)" data-icon="https://trocador.app/static/img/icons/usdt.svg">USDT (Polygon)</option>
+                    <option value="USDT (Bep20)" data-icon="https://trocador.app/static/img/icons/usdt.svg">USDT (Bep20)</option> <!-- تغيير هنا -->
+                    <option value="USDT (Toncoin)" data-icon="https://trocador.app/static/img/icons/usdt.svg">USDT (Toncoin)</option>
+                    <option value="USDC (SOL)" data-icon="https://trocador.app/static/img/icons/usdc.svg">USDC (SOL)</option>
+                    <option value="BTC (Mainnet)" data-icon="https://trocador.app/static/img/icons/btc.svg">BTC (Mainnet)</option>
+                    <option value="TRX (Mainnet)" data-icon="https://trocador.app/static/img/icons/trx.svg">TRX (Mainnet)</option>
+                    <option value="SOL (Mainnet)" data-icon="https://trocador.app/static/img/icons/sol.svg">SOL (Mainnet)</option>
+                    <option value="ETH (Mainnet)" data-icon="https://trocador.app/static/img/icons/eth.svg">ETH (Mainnet)</option>
+                    <option value="TON (Mainnet)" data-icon="https://trocador.app/static/img/icons/ton.svg">TON (Mainnet)</option>
+                </select>
+                
     
                 <div class="label purchase-title">أدخل بريدك الإلكتروني لاستلام تفاصيل البطاقة</div>
                 <input type="email" placeholder="أدخل بريدك الإلكتروني" class="field full-width" id="email" />
