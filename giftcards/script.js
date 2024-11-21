@@ -119,7 +119,7 @@ $(document).ready(function () {
             })
             .then(data => {
                 if (data.trade_id) {
-                    window.open(`https://trocador.app/giftcardscheckout/${data.trade_id}`, '_blank');
+                    window.location.href = `https://trocador.app/giftcardscheckout/${data.trade_id}`;
                 }
                 $('#loading-screen').hide(); // إخفاء دائرة التحميل
             })
