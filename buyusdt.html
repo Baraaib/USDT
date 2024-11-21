@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/icon.png" type="image/png">
-    <title>شراء العملات الرقمية || USDT </title>
+    <title>شراء بطاقة الهدايا بالعملات الرقمية | متجر كريبتو لايك </title>
 
         <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9SBNKRGSE0"></script>
@@ -277,9 +277,12 @@
         <span class="nav-item"><a href="https://cryptolike.store/contactus">اتصل بنا</a></span>
     </div>
 
+
     <div class="country-selector">
         <select id="country-select" class="country-select">
             <option value="saudi-arabia">المملكة العربية السعودية</option>
+            <option value="united-arab-emirates">الامارات</option>
+            <option value="germany">Germany</option>
         </select>
     </div>
 
@@ -301,38 +304,65 @@
     <script>
         let giftCardsData = [];
     
+        // دالة لجلب بيانات بطاقات الهدايا بناءً على الدولة المحددة
         function fetchGiftCards(filePath) {
             fetch(filePath)
                 .then(response => response.json())
                 .then(giftCards => {
                     giftCardsData = giftCards;
-                    displayGiftCards(giftCardsData);
+                    displayGiftCards(giftCardsData); // عرض بطاقات الهدايا
                 })
                 .catch(error => console.error('Error fetching gift card data:', error));
         }
     
+        // إعداد قائمة الدول عند تحميل الصفحة
         document.addEventListener('DOMContentLoaded', function() {
+            // تحديد السعودية كخيار افتراضي
             const countrySelect = document.getElementById('country-select');
-            countrySelect.value = 'saudi-arabia'; 
-
-            fetchGiftCards('tcards/tcards.json');
+            countrySelect.value = 'saudi-arabia'; // تعيين السعودية كخيار افتراضي
+    
+            // عرض بطاقات السعودية عند تحميل الصفحة
+            fetchGiftCards('https://cryptolike.store/tcards/tcards.json');
+    
+            // إضافة مستمع لحدث تغيير الدولة
+            countrySelect.addEventListener('change', function() {
+                const selectedCountry = this.value;
+                let filePath = '';
+    
+                // تحديد مسار ملف JSON بناءً على الدولة المحددة
+                if (selectedCountry === 'united-arab-emirates') {
+                    filePath = 'giftcards/uae_giftcards_data.json';
+                } else if (selectedCountry === 'germany') {
+                    filePath = 'giftcards/germany_giftcards_data.json';
+                } else if (selectedCountry === 'saudi-arabia') {
+                    filePath = 'https://cryptolike.store/tcards/tcards.json'; // مسار السعودية
+                }
+    
+                // جلب البيانات إذا تم اختيار دولة
+                if (filePath) {
+                    fetchGiftCards(filePath);
+                }
+            });
         });
     
+        // دالة لعرض بطاقات الهدايا
         function displayGiftCards(cards) {
             const container = document.getElementById('giftcards-container');
-            container.innerHTML = '';
+            container.innerHTML = ''; // إعادة تعيين المحتوى
             cards.forEach(card => {
                 const cardDiv = document.createElement('div');
                 cardDiv.className = 'giftcard';
                 cardDiv.innerHTML = `<img src="${card.card_image_url}" alt="${card.name}" class="card-image">`;
                 container.appendChild(cardDiv);
     
+                // إضافة حدث النقر على الصورة لإظهار النافذة المنبثقة
                 cardDiv.querySelector('.card-image').addEventListener('click', function() {
-                    showPopup(card);
+                    showPopup(card); // استدعاء دالة لعرض النافذة المنبثقة
                 });
             });
         }
     
+        // دالة لإظهار النافذة المنبثقة بمعلومات البطاقة
         function showPopup(card) {
             document.getElementById('popup-title').innerText = card.name;
             document.getElementById('popup-image').src = card.card_image_url;
@@ -349,21 +379,47 @@
                 <p><a href="${card.how_to_use}" target="_blank">How to Use</a></p>
             `;
     
+            // إنشاء الزر هنا
             const purchaseButton = document.createElement('button');
             purchaseButton.className = 'purchase-button';
             purchaseButton.innerText = 'Buy now';
             document.getElementById('popup-content').appendChild(purchaseButton);
     
+            // إضافة حدث النقر على زر الشراء
             purchaseButton.addEventListener('click', function() {
-                const orderUrl = `https://cryptolike.store/giftcards/order.html?name=${encodeURIComponent(card.name)}&product_id=${encodeURIComponent(card.product_id)}&denominations=${encodeURIComponent(card.denominations)}`;
-                window.location.href = orderUrl;
+                const selectedCountry = document.getElementById('country-select').value; // الحصول على الدولة المحددة
+                let orderUrl = '';
+    
+                // تحديد عنوان URL بناءً على الدولة
+                switch (selectedCountry) {
+                    case 'saudi-arabia':
+                    case 'united-arab-emirates':
+                        orderUrl = `https://cryptolike.store/giftcards/order.html?name=${encodeURIComponent(card.name)}&product_id=${encodeURIComponent(card.product_id)}&denominations=${encodeURIComponent(card.denominations)}`;
+                        break;
+                    case 'germany':
+                        orderUrl = `https://cryptolike.store/giftcards/order.html?name=${encodeURIComponent(card.name)}&product_id=${encodeURIComponent(card.product_id)}&denominations=${encodeURIComponent(card.denominations)}`;
+                        break;
+                    // يمكنك إضافة دول أخرى هنا إذا لزم الأمر
+                }
+    
+                // توجيه المستخدم إلى صفحة الطلب
+                if (orderUrl) {
+                    window.location.href = orderUrl;
+                }
             });
     
             document.querySelector('.popup').style.display = 'block';
+            document.querySelector('.popup-overlay').style.display = 'block';
         }
     
+        // إغلاق النافذة المنبثقة
         document.querySelector('.popup-close').addEventListener('click', function() {
             document.querySelector('.popup').style.display = 'none';
+            document.querySelector('.popup-overlay').style.display = 'none';
+            document.querySelector('.denomination-dropdown')?.remove(); // إزالة القائمة المنسدلة عند الإغلاق
         });
     </script>
+    
+    
 </body>
+</html>
