@@ -186,6 +186,7 @@
                     <p id="popup-description"></p>
                     <p id="popup-how-to-use"></p>
                     <p id="popup-product-id"></p>
+                    <p id="popup-price"></p> <!-- سيتم عرض السعر هنا -->
                 </div>
                 <button class="purchase-button" id="purchase-button">Buy now</button>
             </div>
@@ -236,6 +237,8 @@
             document.getElementById('popup-how-to-use').innerText = `كيفية الاستخدام: ${card.how_to_use}`;
             document.getElementById('popup-product-id').innerText = `رقم المنتج: ${card.product_id}`;
             document.getElementById('popup-image').src = card.card_image_url;
+            document.getElementById('popup-price').innerText = `السعر الإجمالي: ${card.total_price}`;
+
 
             const purchaseButton = document.getElementById('purchase-button');
             purchaseButton.onclick = function () {
