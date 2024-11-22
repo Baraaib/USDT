@@ -19,6 +19,7 @@
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
+            cursor: pointer; /* تغيير المؤشر إلى يد */
         }
         .giftcard img {
             max-width: 100%;
@@ -105,118 +106,76 @@
             <div class="popup-right">
                 <div>
                     <h2 id="popup-title"></h2>
+                    <p id="popup-category"></p>
                     <p id="popup-description"></p>
+                    <p id="popup-how-to-use"></p>
+                    <p id="popup-product-id"></p>
                 </div>
                 <button class="purchase-button" id="purchase-button">Buy now</button>
             </div>
         </div>
     </div>
+
     <script>
-let giftCardsData = [];
+        let giftCardsData = [];
 
-// دالة لجلب بيانات بطاقات الهدايا من الرابط المحدد
-function fetchGiftCards(filePath) {
-    fetch(filePath)
-        .then(response => response.json())
-        .then(giftCards => {
-            giftCardsData = giftCards;
-            displayGiftCards(giftCardsData); // عرض بطاقات الهدايا
-        })
-        .catch(error => console.error('Error fetching gift card data:', error));
-}
+        // دالة لجلب بيانات بطاقات الهدايا
+        function fetchGiftCards(filePath) {
+            fetch(filePath)
+                .then(response => response.json())
+                .then(giftCards => {
+                    giftCardsData = giftCards;
+                    displayGiftCards(giftCardsData);
+                })
+                .catch(error => console.error('Error fetching gift card data:', error));
+        }
 
-// إعداد عرض بطاقات الهدايا عند تحميل الصفحة
-document.addEventListener('DOMContentLoaded', function() {
-    // عرض بطاقات الهدايا عند تحميل الصفحة
-    fetchGiftCards('https://cryptolike.store/tcards/tcards.json');
-});
-
-// دالة لعرض بطاقات الهدايا على شكل شبكة
-function displayGiftCards(cards) {
-    const container = document.getElementById('giftcards-container');
-    container.innerHTML = ''; // إعادة تعيين المحتوى
-    cards.forEach(card => {
-        const cardDiv = document.createElement('div');
-        cardDiv.className = 'giftcard';
-        cardDiv.innerHTML = `<img src="${card.card_image_url}" alt="${card.name}" class="card-image">`;
-        container.appendChild(cardDiv);
-
-        // إضافة حدث النقر على الصورة لإظهار النافذة المنبثقة
-        cardDiv.querySelector('.card-image').addEventListener('click', function() {
-            showPopup(card); // استدعاء دالة لعرض النافذة المنبثقة
+        // تحميل البطاقات عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchGiftCards('https://cryptolike.store/tcards/tcards.json');
         });
-    });
-}
 
-// دالة لإظهار النافذة المنبثقة بمعلومات البطاقة
-function showPopup(card) {
-    document.getElementById('popup-title').innerText = card.name;
-    document.getElementById('popup-image').src = card.card_image_url;
-    
-    let popupContent = [];
-    
-    // إضافة الحقول فقط إذا كانت موجودة
-    if (card.category) popupContent.push(`<p><strong>Category:</strong> ${card.category}</p>`);
-    if (card.description) popupContent.push(`<p><strong>Description:</strong> ${card.description}</p>`);
-    if (card.currency_code) popupContent.push(`<p><strong>Currency:</strong> ${card.currency_code}</p>`);
-    if (card.min_amount) popupContent.push(`<p><strong>Minimum Amount:</strong> ${card.min_amount} ${card.currency_code}</p>`);
-    if (card.max_amount) popupContent.push(`<p><strong>Maximum Amount:</strong> ${card.max_amount} ${card.currency_code}</p>`);
-    if (card.expiry_and_validity) popupContent.push(`<p><strong>Expiry:</strong> ${card.expiry_and_validity}</p>`);
-    popupContent.push(`<p><strong>Product ID:</strong> ${card.product_id}</p>`);
-    
-    // إضافة كيفية الاستخدام (how_to_use) إذا كانت موجودة
-    if (card.how_to_use) {
-        popupContent.push(`<p><strong>How to Use:</strong><br>${card.how_to_use.replace(/\n/g, "<br>")}</p>`); // التعامل مع الأسطر الجديدة (newline)
-    }
+        // دالة لعرض البطاقات
+        function displayGiftCards(cards) {
+            const container = document.getElementById('giftcards-container');
+            container.innerHTML = ''; // إعادة تعيين المحتوى
+            cards.forEach(card => {
+                const cardDiv = document.createElement('div');
+                cardDiv.className = 'giftcard';
+                cardDiv.innerHTML = `<img src="${card.card_image_url}" alt="${card.name}" class="card-image">`;
+                container.appendChild(cardDiv);
 
-    // فقط إضافة Denominations إذا كانت القيمة موجودة في JSON
-    if (card.denominations && card.denominations !== "") {
-        popupContent.push(`<p><strong>Denominations:</strong> ${card.denominations}</p>`);
-    }
-
-    // دمج المحتوى فقط إذا كانت الحقول موجودة
-    document.getElementById('popup-content').innerHTML = popupContent.join('');
-
-    // إنشاء الزر هنا
-    const purchaseButton = document.createElement('button');
-    purchaseButton.className = 'purchase-button';
-    purchaseButton.innerText = 'Buy now';
-    document.getElementById('popup-content').appendChild(purchaseButton);
-
-    // إضافة حدث النقر على زر الشراء
-    purchaseButton.addEventListener('click', function() {
-        const selectedCountry = document.getElementById('country-select').value; // الحصول على الدولة المحددة
-        let orderUrl = '';
-
-        // تحديد عنوان URL بناءً على الدولة
-        switch (selectedCountry) {
-            case 'saudi-arabia':
-            case 'united-arab-emirates':
-                orderUrl = `https://cryptolike.store/giftcards/order.html?name=${encodeURIComponent(card.name)}&product_id=${encodeURIComponent(card.product_id)}&denominations=${encodeURIComponent(card.denominations)}`;
-                break;
-            case 'germany':
-                orderUrl = `https://cryptolike.store/giftcards/order.html?name=${encodeURIComponent(card.name)}&product_id=${encodeURIComponent(card.product_id)}&denominations=${encodeURIComponent(card.denominations)}`;
-                break;
+                // حدث النقر على البطاقة
+                cardDiv.addEventListener('click', function() {
+                    showPopup(card);
+                });
+            });
         }
 
-        // توجيه المستخدم إلى صفحة الطلب
-        if (orderUrl) {
-            window.location.href = orderUrl;
+        // دالة عرض النافذة المنبثقة
+        function showPopup(card) {
+            document.getElementById('popup-title').innerText = `الاسم: ${card.name}`;
+            document.getElementById('popup-category').innerText = `الفئة: ${card.category}`;
+            document.getElementById('popup-description').innerText = `الوصف: ${card.description}`;
+            document.getElementById('popup-how-to-use').innerText = `كيفية الاستخدام: ${card.how_to_use}`;
+            document.getElementById('popup-product-id').innerText = `رقم المنتج: ${card.product_id}`;
+            document.getElementById('popup-image').src = card.card_image_url;
+
+            const purchaseButton = document.getElementById('purchase-button');
+            purchaseButton.onclick = function () {
+                alert(`تم طلب شراء البطاقة: ${card.name}`);
+            };
+
+            // إظهار النافذة المنبثقة
+            const popup = document.querySelector('.popup');
+            popup.style.display = 'flex';
         }
-    });
 
-    // إظهار النافذة المنبثقة
-    document.querySelector('.popup').style.display = 'block';
-    document.querySelector('.popup-overlay').style.display = 'block';
-}
-
-// إغلاق النافذة المنبثقة
-document.querySelector('.popup-close').addEventListener('click', function() {
-    document.querySelector('.popup').style.display = 'none';
-    document.querySelector('.popup-overlay').style.display = 'none';
-    document.querySelector('.denomination-dropdown')?.remove(); // إزالة القائمة المنسدلة عند الإغلاق
-});
-
+        // دالة إغلاق النافذة المنبثقة
+        document.querySelector('.popup-close').addEventListener('click', function() {
+            const popup = document.querySelector('.popup');
+            popup.style.display = 'none';
+        });
     </script>
 </body>
 </html>
