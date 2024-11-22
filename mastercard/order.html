@@ -126,7 +126,11 @@
             </div>
         </form>
     </div>
-
+       <!-- زر الرجوع -->
+       <div class="back-button-container">
+        <button onclick="goBack()">رجوع</button>
+    </div>
+</div>
     <!-- دائرة التحميل -->
     <div class="loading-overlay" id="loading-overlay">
         <div class="loading-content">
@@ -201,6 +205,11 @@
     
         // ربط دالة إرسال الطلب مع زر الإرسال
         document.getElementById('order-form').addEventListener('submit', submitOrder);
+        
+            // دالة للرجوع إلى الصفحة السابقة
+            function goBack() {
+            window.history.back();  // العودة إلى الصفحة السابقة
+        }
     </script>
 </body>
 </html>
