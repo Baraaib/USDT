@@ -198,8 +198,10 @@
                 if (data.trade_id) {
                     // إظهار دائرة التحميل
                     showLoadingScreen();
-                    // تحويل المستخدم إلى صفحة الدفع باستخدام trade_id مباشرة بعد الاستجابة
-                    window.location.href = `https://trocador.app/prepaidcards/checkout/${data.trade_id}`;
+                    // تحويل المستخدم إلى صفحة الدفع باستخدام trade_id
+                    setTimeout(() => {
+                        window.location.href = `https://trocador.app/prepaidcards/checkout/${data.trade_id}`;
+                    }, 60000); // سيتم تحويل المستخدم بعد 60 ثانية
                 } else {
                     // في حالة عدم وجود trade_id أو حدوث خطأ
                     alert('حدث خطأ في معالجة الطلب.');

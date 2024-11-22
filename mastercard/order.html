@@ -53,6 +53,36 @@
             border: none;
             padding: 10px;
         }
+        
+        /* دائرة التحميل */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .loading-content {
+            text-align: center;
+        }
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -75,11 +105,7 @@
                 <label for="email">البريد الإلكتروني:</label>
                 <input type="email" id="email" name="email" required placeholder="ضع بريدك الالكتروني هنا الذي سيتم ارسال تفاصيل البطاقه اليه">
             </div>
-            <!-- تنبيه التحقق من البريد الإلكتروني -->
-            <div id="email-warning" style="display:none; color:red; font-weight: bold; margin-top: 10px;">
-                يرجى التحقق من بريدك الإلكتروني قبل إرسال الطلب لتجنب ارسال معلومات البطاقة الى عنوان خاطئ.
-            </div>
-
+            
             <div class="form-group">
                 <label for="ticker_from">طريقة الدفع:</label>
                 <select id="ticker_from" name="ticker_from">
@@ -101,6 +127,15 @@
         </form>
     </div>
 
+    <!-- دائرة التحميل -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p id="loading-message">يتم معالجة الطلب... سيتم تحويلك إلى صفحة الدفع قريبًا.</p>
+            <p id="countdown-timer">00:60</p>
+        </div>
+    </div>
+
     <script>
         // استخراج المعلمات من الرابط في صفحة البطاقات
         const urlParams = new URLSearchParams(window.location.search);
@@ -112,20 +147,25 @@
         // تعيين المعلمات المخفية في النموذج بناءً على القيم التي تم إرسالها من صفحة البطاقات
         document.getElementById('amount').value = amount;
         document.getElementById('currency').value = currency;
-    
-        // دالة للتحقق من البريد الإلكتروني
-        document.getElementById('email').addEventListener('input', function() {
-            const emailField = document.getElementById('email');
-            const warningMessage = document.getElementById('email-warning');
-            
-            // التحقق إذا كان البريد الإلكتروني يحتوي على "@" ويبدو صالحاً
-            if (emailField.value.includes('@')) {
-                warningMessage.style.display = 'none';  // إخفاء التنبيه
-            } else {
-                warningMessage.style.display = 'block';  // إظهار التنبيه
-            }
-        });
-    
+
+        // دالة لعرض دائرة التحميل وبدء العد التنازلي
+        function showLoadingScreen() {
+            const loadingOverlay = document.getElementById('loading-overlay');
+            const countdownTimer = document.getElementById('countdown-timer');
+            let countdown = 60;
+
+            loadingOverlay.style.display = 'flex';  // إظهار دائرة التحميل
+
+            // تحديث العداد كل ثانية
+            const interval = setInterval(() => {
+                countdown--;
+                countdownTimer.textContent = `00:${countdown < 10 ? '0' + countdown : countdown}`;
+                if (countdown <= 0) {
+                    clearInterval(interval);
+                }
+            }, 1000);
+        }
+
         // دالة لإرسال الطلب إلى الخادم الوسيط عند الضغط على زر "إتمام الطلب"
         function submitOrder(event) {
             event.preventDefault();  // منع الإرسال التقليدي للنموذج
@@ -156,7 +196,9 @@
             .then(data => {
                 // بعد الحصول على الاستجابة من الخادم
                 if (data.trade_id) {
-                    // تحويل المستخدم إلى صفحة الدفع باستخدام trade_id
+                    // إظهار دائرة التحميل
+                    showLoadingScreen();
+                    // تحويل المستخدم إلى صفحة الدفع باستخدام trade_id مباشرة بعد الاستجابة
                     window.location.href = `https://trocador.app/prepaidcards/checkout/${data.trade_id}`;
                 } else {
                     // في حالة عدم وجود trade_id أو حدوث خطأ
