@@ -4,7 +4,7 @@
         "category": "5 USDT",
         "description": "احصل على بطاقة كريبتو لايك برصيد عملة  التيثر الرقمية وقم بصرفها مباشرة الى عنوان محفظتك ",
         "how_to_use": "عند طلب شراء البطاقة يجب اختيار الشبكة وعنوان المحفظة المرسل اليه . بعد اتمام عملية الدفع يتم تحويل رصيد البطاقة مباشرة الى  عنوان محفظتك .",
-        "card_image_url": "https://github.com/Baraaib/USDT/blob/master/images/Tcards/c5.png?raw=true",
+        "card_image_url": "https://github.com/Baraaib/USDT/blob/master/images/Tcards/5USDT.png?raw=true",
         "product_id": "T5",
         "total_price": "6.25$"
         
@@ -15,9 +15,9 @@
         "category": "10 USDT",
         "description": "احصل على بطاقة كريبتو لايك برصيد عملة  التيثر الرقمية وقم بصرفها مباشرة الى عنوان محفظتك ",
         "how_to_use": "عند طلب شراء البطاقة يجب اختيار الشبكة وعنوان المحفظة المرسل اليه . بعد اتمام عملية الدفع يتم تحويل رصيد البطاقة مباشرة الى  عنوان محفظتك .",
-        "card_image_url": "https://github.com/Baraaib/USDT/blob/master/images/Tcards/c10.png?raw=true", 
+        "card_image_url": "https://github.com/Baraaib/USDT/blob/master/images/Tcards/10USDT.png?raw=true", 
         "product_id": "T10",
-        "total_price": "6.25$"
+        "total_price": "12$"
 
     },
     {
@@ -25,9 +25,9 @@
         "category": "25 USDT",
         "description": "احصل على بطاقة كريبتو لايك برصيد عملة  التيثر الرقمية وقم بصرفها مباشرة الى عنوان محفظتك ",
         "how_to_use": "عند طلب شراء البطاقة يجب اختيار الشبكة وعنوان المحفظة المرسل اليه . بعد اتمام عملية الدفع يتم تحويل رصيد البطاقة مباشرة الى  عنوان محفظتك .",
-        "card_image_url": "https://github.com/Baraaib/USDT/blob/master/images/Tcards/c25.png?raw=true",    
+        "card_image_url": "https://github.com/Baraaib/USDT/blob/master/images/Tcards/25USDT.png?raw=true",    
         "product_id": "T25",
-        "total_price": "6.25$"
+        "total_price": "28$"
 
     },
 
@@ -36,9 +36,9 @@
         "category": "USDT",
         "description": "احصل على بطاقة كريبتو لايك برصيد عملة  التيثر الرقمية وقم بصرفها مباشرة الى عنوان محفظتك ",
         "how_to_use": "عند طلب شراء البطاقة يجب اختيار الشبكة وعنوان المحفظة المرسل اليه . بعد اتمام عملية الدفع يتم تحويل رصيد البطاقة مباشرة الى  عنوان محفظتك .",
-        "card_image_url": "https://github.com/Baraaib/USDT/blob/master/images/Tcards/c50.png?raw=true",     
+        "card_image_url": "https://github.com/Baraaib/USDT/blob/master/images/Tcards/50USDT.png?raw=true",     
         "product_id": "T50",
-        "total_price": "6.25$"
+        "total_price": "55$"
 
     },
     {
@@ -46,9 +46,9 @@
         "category": "100 USDT",
         "description": "احصل على بطاقة كريبتو لايك برصيد عملة التيثر الرقمية وقم بصرفها مباشرة إلى عنوان محفظتك.",
         "how_to_use": "عند طلب شراء البطاقة يجب اختيار الشبكة وعنوان المحفظة المرسل اليه . بعد اتمام عملية الدفع يتم تحويل رصيد البطاقة مباشرة الى  عنوان محفظتك .",
-        "card_image_url": "https://github.com/Baraaib/USDT/blob/master/images/Tcards/c100.png?raw=true",
+        "card_image_url": "https://github.com/Baraaib/USDT/blob/master/images/Tcards/100USDT.png?raw=true",
         "product_id": "T100",
-        "total_price": "6.25$"
+        "total_price": "107$"
 
     },
     {
@@ -56,9 +56,9 @@
         "category": "200 USDT",
         "description": "احصل على بطاقة كريبتو لايك برصيد عملة  التيثر الرقمية وقم بصرفها مباشرة الى عنوان محفظتك ",
         "how_to_use": "عند طلب شراء البطاقة يجب اختيار الشبكة وعنوان المحفظة المرسل اليه . بعد اتمام عملية الدفع يتم تحويل رصيد البطاقة مباشرة الى  عنوان محفظتك .",
-        "card_image_url": "https://github.com/Baraaib/USDT/blob/master/images/Tcards/c100.png?raw=true",      
+        "card_image_url": "https://github.com/Baraaib/USDT/blob/master/images/Tcards/200USDT.png?raw=true",      
         "product_id": "T200",
-        "total_price": "usd"
+        "total_price": "215$"
 
     }
 ]
