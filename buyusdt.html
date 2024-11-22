@@ -104,7 +104,13 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            text-align: right; /* محاذاة النصوص إلى اليمين */
+            direction: rtl;    /* اتجاه النصوص العربية من اليمين لليسار */
         }
+        .popup-right span.english-text {
+    direction: ltr;    /* اتجاه النصوص الإنجليزية من اليسار لليمين */
+    text-align: left;  /* محاذاة النصوص إلى اليسار */
+}
         .popup-close {
             background: #f44336;
             color: white;
@@ -229,21 +235,24 @@
             });
         }
 
-        // دالة عرض النافذة المنبثقة
         function showPopup(card) {
-            document.getElementById('popup-title').innerText = `الاسم: ${card.name}`;
-            document.getElementById('popup-category').innerText = `الفئة: ${card.category}`;
-            document.getElementById('popup-description').innerText = `الوصف: ${card.description}`;
-            document.getElementById('popup-how-to-use').innerText = `كيفية الاستخدام: ${card.how_to_use}`;
-            document.getElementById('popup-product-id').innerText = `رقم المنتج: ${card.product_id}`;
-            document.getElementById('popup-image').src = card.card_image_url;
-            document.getElementById('popup-price').innerText = `السعر الإجمالي: ${card.total_price}`;
+    console.log(card); // لمراقبة الكائن الذي يتم تمريره
 
+    document.getElementById('popup-title').innerText = `الاسم: ${card.name}`;
+    document.getElementById('popup-category').innerText = `الفئة: ${card.category}`;
+    document.getElementById('popup-description').innerText = `الوصف: ${card.description}`;
+    document.getElementById('popup-how-to-use').innerText = `كيفية الاستخدام: ${card.how_to_use}`;
+    document.getElementById('popup-product-id').innerText = `رقم المنتج: ${card.product_id}`;
+    document.getElementById('popup-image').src = card.card_image_url;
 
-            const purchaseButton = document.getElementById('purchase-button');
-            purchaseButton.onclick = function () {
-                alert(`تم طلب شراء البطاقة: ${card.name}`);
-            };
+    // تحقق من وجود السعر الإجمالي في الكائن
+    const totalPrice = card.total_price ? card.total_price : "السعر غير متاح";
+    document.getElementById('popup-price').innerText = `السعر الإجمالي: ${totalPrice}`;
+
+    const purchaseButton = document.getElementById('purchase-button');
+    purchaseButton.onclick = function () {
+        alert(`تم طلب شراء البطاقة: ${card.name}`);
+    };
 
             // إظهار النافذة المنبثقة
             const popup = document.querySelector('.popup');
