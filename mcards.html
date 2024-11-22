@@ -3,218 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحة الطلب</title>
+    <title>شراء بطاقات ماستر كارد | متجر كريبتو لايك</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin-top: 50px;
-        }
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        select, input[type="email"], input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .hidden-fields {
-            display: none;
+            background-color: black;
+            color: black; /* لضمان ظهور النصوص */
         }
         .button-container {
-            text-align: center;
-        }
-        .button-container input {
-            width: 50%;
-            background-color: #28a745;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 10px;
+            flex-direction: row-reverse; /* تعديل هذا السطر لجعل الأزرار تبدأ من اليمين */
         }
-        
-        /* دائرة التحميل */
-        .loading-overlay {
+        @media (max-width: 480px) {
+            .button-container {
+                flex-direction: column; /* تغيير الاتجاه إلى عمودي */
+                align-items: stretch; /* تمديد الأزرار لملء العرض */
+            }
+            .button-container a {
+                text-align: center; /* ضبط النص ليكون في المنتصف */
+                margin: 5px 0; /* إضافة مسافة بين الأزرار */
+            }
+        }
+
+        .nav-item a {
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 10px 15px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-item a:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .separator {
+            margin: 0 10px;
+            color: white;
+        }
+
+        /* تنسيق الشبكة */
+        .giftcards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 20px;
+        }
+        .giftcard {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer; /* تغيير المؤشر إلى يد */
+        }
+        .giftcard img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        .giftcard:hover {
+            transform: scale(1.05);
+        }
+
+        /* تنسيق النافذة المنبثقة */
+        .popup {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            display: none;
+            background-color: rgba(0, 0, 0, 0.5);
             justify-content: center;
             align-items: center;
-            z-index: 9999;
         }
-        .loading-content {
+        .popup-content-container {
+            background: white;
+            width: 50%;
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            gap: 20px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        }
+        .popup-left {
+            flex: 1;
+        }
+        .popup-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: right; /* محاذاة النصوص إلى اليمين */
+            direction: rtl;    /* اتجاه النصوص العربية من اليمين لليسار */
+        }
+        .popup-right span.english-text {
+            direction: ltr;    /* اتجاه النصوص الإنجليزية من اليسار لليمين */
+            text-align: left;  /* محاذاة النصوص إلى اليسار */
+        }
+        .popup-close {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            align-self: flex-end;
+        }
+        .popup-close:hover {
+            background: #d32f2f;
+        }
+        .popup-image {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        .purchase-button {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 8px;
             text-align: center;
         }
-        .spinner {
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-top: 4px solid white;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
+        .purchase-button:hover {
+            background: #388e3c;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        /* إعدادات الشبكة للشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .giftcards-grid {
+                grid-template-columns: repeat(2, 1fr); /* عمودان للشاشات المتوسطة */
+            }
         }
+
+        @media (max-width: 480px) {
+            .giftcards-grid {
+                grid-template-columns: 1fr; /* عمود واحد للشاشات الصغيرة جدًا */
+            }
+            .popup-content-container {
+                width: 90%; /* تصغير عرض النافذة المنبثقة للشاشات الصغيرة */
+            }
+        }
+
     </style>
 </head>
 <body>
-
-    <div class="container">
-        <h2>إتمام الطلب</h2>
-        
-        <!-- Form to submit the order -->
-        <form id="order-form">
-            <!-- Hidden fields -->
-            <div class="hidden-fields">
-                <input type="hidden" name="provider" value="MyPrepaidCenter">
-                <input type="hidden" name="currency_code" value="USD">
-                <input type="hidden" id="amount" name="amount" value="">
-                <input type="hidden" id="currency" name="currency" value="">
-            </div>
-
-            <!-- Visible Fields -->
-            <div class="form-group">
-                <label for="email">البريد الإلكتروني:</label>
-                <input type="email" id="email" name="email" required placeholder="ضع بريدك الالكتروني هنا الذي سيتم ارسال تفاصيل البطاقه اليه">
-            </div>
-            
-            <div class="form-group">
-                <label for="ticker_from">طريقة الدفع:</label>
-                <select id="ticker_from" name="ticker_from">
-                    <option value="USDT(SOL)">USDT (SOL)</option>
-                    <option value="USDT(TRC20)">USDT (TRC20)</option>
-                    <option value="USDT(BEP20)">USDT (BEP20)</option>
-                    <option value="USDT(TON)">USDT (TON)</option>
-                    <option value="SOL">SOL (Mainnet)</option>
-                    <option value="TRX">TRX (Mainnet)</option>
-                    <option value="ETH">ETH (Mainnet)</option>
-                    <option value="BTC">BTC (Mainnet)</option>
-                    <option value="TON">TON (Mainnet)</option>
-                </select>
-            </div>
-
-            <div class="button-container">
-                <input type="submit" value="إتمام الطلب">
-            </div>
-        </form>
+    <div class="button-container">
+        <span class="nav-item"><a href="https://cryptolike.store/">الصفحة الرئيسية</a></span>
+        <span class="separator">|</span>
+        <span class="nav-item"><a href="https://cryptolike.store/buyusdt">شراء USDT</a></span>
+        <span class="separator">|</span>
+        <span class="nav-item"><a href="https://cryptolike.store/virtualmastercard">بطاقة ماستر كارد الافتراضية</a></span>
+        <span class="separator">|</span>
+        <span class="nav-item"><a href="https://cryptolike.store/bridge">جسر الكريبتو</a></span>
+        <span class="separator">|</span>
+        <span class="nav-item"><a href="https://cryptolike.store/giftcards">بطاقة الهدايا</a></span>
+        <span class="separator">|</span>
+        <span class="nav-item"><a href="https://cryptolike.store/contactus">اتصل بنا</a></span>
     </div>
 
-    <!-- دائرة التحميل -->
-    <div class="loading-overlay" id="loading-overlay">
-        <div class="loading-content">
-            <div class="spinner"></div>
-            <p id="loading-message">يتم معالجة الطلب... سيتم تحويلك إلى صفحة الدفع قريبًا.</p>
-            <p id="countdown-timer">00:60</p>
+    <!-- شبكة البطاقات -->
+    <div class="giftcards-grid" id="giftcards-container"></div>
+
+    <!-- النافذة المنبثقة -->
+    <div class="popup">
+        <div class="popup-content-container">
+            <button class="popup-close">إغلاق</button>
+            <!-- القسم الأيسر -->
+            <div class="popup-left">
+                <img id="popup-image" class="popup-image" src="" alt="Card Image">
+            </div>
+            <!-- القسم الأيمن -->
+            <div class="popup-right">
+                <div>
+                    <h2 id="popup-title"></h2>
+                    <p id="popup-category"></p>
+                    <p id="popup-description"></p>
+                    <p id="popup-how-to-use"></p>
+                    <p id="popup-product-id"></p>
+                    <p id="popup-price"></p> <!-- سيتم عرض السعر هنا -->
+                    <p id="popup-currency"></p> <!-- سيتم عرض العملة هنا -->
+                    <p id="popup-restricted-countries"></p> <!-- سيتم عرض الدول المحظورة هنا -->
+                </div>
+                <button class="purchase-button" id="purchase-button">شراء الآن</button>
+            </div>
         </div>
     </div>
 
     <script>
-        // استخراج المعلمات من الرابط في صفحة البطاقات
-        const urlParams = new URLSearchParams(window.location.search);
-        const amount = urlParams.get('amount');
-        const currency = urlParams.get('currency');
-        const provider = "MyPrepaidCenter"; // ثابت
-        const currencyCode = "USD"; // ثابت
+        let giftCardsData = [];
     
-        // تعيين المعلمات المخفية في النموذج بناءً على القيم التي تم إرسالها من صفحة البطاقات
-        document.getElementById('amount').value = amount;
-        document.getElementById('currency').value = currency;
-
-        // دالة لعرض دائرة التحميل وبدء العد التنازلي
-        function showLoadingScreen() {
-            const loadingOverlay = document.getElementById('loading-overlay');
-            const countdownTimer = document.getElementById('countdown-timer');
-            let countdown = 60;
-
-            loadingOverlay.style.display = 'flex';  // إظهار دائرة التحميل
-
-            // تحديث العداد كل ثانية
-            const interval = setInterval(() => {
-                countdown--;
-                countdownTimer.textContent = `00:${countdown < 10 ? '0' + countdown : countdown}`;
-                if (countdown <= 0) {
-                    clearInterval(interval);
-                }
-            }, 1000);
+        // دالة لجلب بيانات بطاقات الماستر كارد
+        function fetchGiftCards(filePath) {
+            fetch(filePath)
+                .then(response => response.json())
+                .then(giftCards => {
+                    giftCardsData = giftCards;
+                    displayGiftCards(giftCardsData);
+                })
+                .catch(error => console.error('Error fetching gift card data:', error));
         }
-
-        // دالة لإرسال الطلب إلى الخادم الوسيط عند الضغط على زر "إتمام الطلب"
-        function submitOrder(event) {
-            event.preventDefault();  // منع الإرسال التقليدي للنموذج
-
-            const email = document.getElementById('email').value;
-            const tickerFrom = document.getElementById('ticker_from').value;
-
-            // تقسيم ticker_from إلى ticker_from و network_from
-            const [ticker, network] = tickerFrom.split('(');
-            const networkFrom = network.replace(')', '');  // إزالة القوسين
-
-            // بناء معلمات الطلب (query string)
-            const queryString = new URLSearchParams({
-                provider: provider,
-                currency_code: currencyCode,
-                amount: amount,
-                currency: currency,
-                ticker_from: ticker,
-                network_from: networkFrom,
-                email: email
-            }).toString();
     
-            // إرسال الطلب إلى الخادم الوسيط
-            fetch(`https://proxy-server-t4bd.onrender.com/api/order_prepaidcard?${queryString}`, {
-                method: 'GET',
-            })
-            .then(response => response.json())
-            .then(data => {
-                // بعد الحصول على الاستجابة من الخادم
-                if (data.trade_id) {
-                    // إظهار دائرة التحميل
-                    showLoadingScreen();
-                    // تحويل المستخدم إلى صفحة الدفع باستخدام trade_id
-                    setTimeout(() => {
-                        window.location.href = `https://trocador.app/prepaidcards/checkout/${data.trade_id}`;
-                    }, 60000); // سيتم تحويل المستخدم بعد 60 ثانية
-                } else {
-                    // في حالة عدم وجود trade_id أو حدوث خطأ
-                    alert('حدث خطأ في معالجة الطلب.');
-                }
-            })
-            .catch(error => {
-                console.error('Error during order submission:', error);
-                alert('حدث خطأ في إرسال الطلب.');
+        // تحميل البطاقات عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchGiftCards('https://cryptolike.store/mastercard/mcards.json');
+        });
+    
+        // دالة لعرض البطاقات
+        function displayGiftCards(cards) {
+            const container = document.getElementById('giftcards-container');
+            container.innerHTML = ''; // إعادة تعيين المحتوى
+            cards.forEach(card => {
+                const cardDiv = document.createElement('div');
+                cardDiv.className = 'giftcard';
+                cardDiv.innerHTML = `<img src="${card.card_image_url}" alt="${card.name}" class="card-image">`;
+                container.appendChild(cardDiv);
+    
+                // حدث النقر على البطاقة
+                cardDiv.addEventListener('click', function() {
+                    showPopup(card);
+                });
             });
         }
     
-        // ربط دالة إرسال الطلب مع زر الإرسال
-        document.getElementById('order-form').addEventListener('submit', submitOrder);
+        function showPopup(card) {
+            console.log(card); // لمراقبة الكائن الذي يتم تمريره
+    
+            document.getElementById('popup-title').innerText = `الاسم: ${card.name}`;
+            document.getElementById('popup-category').innerText = `الفئة: ${card.category || 'MasterCard'}`;
+            document.getElementById('popup-currency').innerText = `عملة البطاقة: ${card.currency}`;
+            document.getElementById('popup-description').innerText = `الوصف: ${card.description}`;
+            document.getElementById('popup-how-to-use').innerText = `كيفية الاستخدام: ${card.how_to_use}`;
+            document.getElementById('popup-product-id').innerText = `رقم المنتج: ${card.product_id}`;
+            document.getElementById('popup-image').src = card.card_image_url;
+    
+            // تحقق من وجود السعر الإجمالي في الكائن
+            const totalPrice = card.total_price ? card.total_price : "السعر غير متاح";
+            document.getElementById('popup-price').innerText = `السعر الإجمالي: ${totalPrice}`;
+            
+            // عرض الدول المحظورة
+            document.getElementById('popup-restricted-countries').innerText = `الدول المحظورة: ${card.restricted_countries}`;
+    
+            const purchaseButton = document.getElementById('purchase-button');
+            purchaseButton.onclick = function () {
+                // استخراج المعلمات من رمز المنتج
+                const productId = card.product_id;
+                const amount = productId.replace('M', ''); // استخراج الرقم من رمز المنتج M10 يصبح 10، M25 يصبح 25، إلخ.
+                const currency = card.currency;
+                
+                // إنشاء رابط للانتقال إلى صفحة الاورد مع المعلمات (بدون تحديد طريقة الدفع في الرابط هنا)
+                const orderUrl = `https://cryptolike.store/mastercard/order?amount=${amount}&provider=MyPrepaidCenter&currency_code=USD&currency=${currency}&email=`;
+    
+                // تحويل المستخدم إلى صفحة الاورد مع المعلمات
+                window.location.href = orderUrl;
+            };
+    
+            // إظهار النافذة المنبثقة
+            const popup = document.querySelector('.popup');
+            popup.style.display = 'flex';
+        }
+    
+        // دالة إغلاق النافذة المنبثقة
+        document.querySelector('.popup-close').addEventListener('click', function() {
+            const popup = document.querySelector('.popup');
+            popup.style.display = 'none';
+        });
     </script>
+    
 </body>
 </html>
