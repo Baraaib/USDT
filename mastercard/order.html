@@ -106,24 +106,66 @@
         const urlParams = new URLSearchParams(window.location.search);
         const amount = urlParams.get('amount');
         const currency = urlParams.get('currency');
-
+        const provider = "MyPrepaidCenter"; // ثابت
+        const currencyCode = "USD"; // ثابت
+    
         // تعيين المعلمات المخفية في النموذج بناءً على القيم التي تم إرسالها من صفحة البطاقات
         document.getElementById('amount').value = amount;
         document.getElementById('currency').value = currency;
-
-        
-         // دالة للتحقق من البريد الإلكتروني
-    document.getElementById('email').addEventListener('input', function() {
-        const emailField = document.getElementById('email');
-        const warningMessage = document.getElementById('email-warning');
-        
-        // التحقق إذا كان البريد الإلكتروني يحتوي على "@" ويبدو صالحاً
-        if (emailField.value.includes('@')) {
-            warningMessage.style.display = 'none';  // إخفاء التنبيه
-        } else {
-            warningMessage.style.display = 'block';  // إظهار التنبيه
+    
+        // دالة للتحقق من البريد الإلكتروني
+        document.getElementById('email').addEventListener('input', function() {
+            const emailField = document.getElementById('email');
+            const warningMessage = document.getElementById('email-warning');
+            
+            // التحقق إذا كان البريد الإلكتروني يحتوي على "@" ويبدو صالحاً
+            if (emailField.value.includes('@')) {
+                warningMessage.style.display = 'none';  // إخفاء التنبيه
+            } else {
+                warningMessage.style.display = 'block';  // إظهار التنبيه
+            }
+        });
+    
+        // دالة لإرسال الطلب إلى الخادم الوسيط عند الضغط على زر "إتمام الطلب"
+        function submitOrder() {
+            const email = document.getElementById('email').value;
+            const tickerFrom = document.getElementById('ticker_from').value;
+            const networkFrom = document.getElementById('network_from').value;
+    
+            // بناء معلمات الطلب (query string)
+            const queryString = new URLSearchParams({
+                provider: provider,
+                currency_code: currencyCode,
+                amount: amount,
+                currency: currency,
+                ticker_from: tickerFrom,
+                network_from: networkFrom,
+                email: email
+            }).toString();
+    
+            // إرسال الطلب إلى الخادم الوسيط
+            fetch(`https://proxy-server-t4bd.onrender.com/api/order_prepaidcard?${queryString}`, {
+                method: 'GET',
+            })
+            .then(response => response.json())
+            .then(data => {
+                // بعد الحصول على الاستجابة من الخادم
+                if (data.trade_id) {
+                    // تحويل المستخدم إلى صفحة الدفع باستخدام trade_id
+                    window.location.href = `https://trocador.app/prepaidcards/checkout/${data.trade_id}`;
+                } else {
+                    // في حالة عدم وجود trade_id أو حدوث خطأ
+                    alert('حدث خطأ في معالجة الطلب.');
+                }
+            })
+            .catch(error => {
+                console.error('Error during order submission:', error);
+                alert('حدث خطأ في إرسال الطلب.');
+            });
         }
-    });
+    
+        // ربط دالة إرسال الطلب مع زر الإرسال
+        document.getElementById('submit-order').addEventListener('click', submitOrder);
     </script>
 </body>
 </html>
