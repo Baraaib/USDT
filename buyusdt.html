@@ -8,7 +8,7 @@
         /* تنسيق الشبكة */
         .giftcards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 16px;
             margin: 20px;
         }
@@ -27,6 +27,8 @@
         .giftcard:hover {
             transform: scale(1.05);
         }
+
+        /* تنسيق النافذة المنبثقة */
         .popup {
             display: none;
             position: fixed;
@@ -40,16 +42,21 @@
         }
         .popup-content-container {
             background: white;
+            width: 50%;
             padding: 20px;
             border-radius: 8px;
             display: flex;
             gap: 20px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
         }
         .popup-left {
             flex: 1;
         }
         .popup-right {
             flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         .popup-close {
             background: #f44336;
@@ -58,28 +65,52 @@
             padding: 10px 20px;
             cursor: pointer;
             font-size: 16px;
+            align-self: flex-end;
         }
         .popup-close:hover {
             background: #d32f2f;
         }
+        .popup-image {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        .purchase-button {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .purchase-button:hover {
+            background: #388e3c;
+        }
     </style>
 </head>
 <body>
+    <!-- شبكة البطاقات -->
     <div class="giftcards-grid" id="giftcards-container"></div>
 
+    <!-- النافذة المنبثقة -->
     <div class="popup">
-        <button class="popup-close">Close</button>
         <div class="popup-content-container">
+            <button class="popup-close">Close</button>
+            <!-- القسم الأيسر -->
             <div class="popup-left">
-                <h2 id="popup-title"></h2>
-                <div id="popup-content"></div>
-            </div>
-            <div class="popup-right">
                 <img id="popup-image" class="popup-image" src="" alt="Card Image">
+            </div>
+            <!-- القسم الأيمن -->
+            <div class="popup-right">
+                <div>
+                    <h2 id="popup-title"></h2>
+                    <p id="popup-description"></p>
+                </div>
+                <button class="purchase-button" id="purchase-button">Buy now</button>
             </div>
         </div>
     </div>
-
     <script>
 let giftCardsData = [];
 
