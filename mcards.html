@@ -90,6 +90,21 @@
             gap: 20px;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
         }
+        /* المحاذاة في الشاشات الصغيرة */
+@media (max-width: 768px) {
+    .popup-content-container {
+        width: 70%; /* تصغير العرض في الشاشات الأصغر */
+    }
+}
+
+/* تحسين التنسيق في الشاشات الصغيرة جداً */
+@media (max-width: 480px) {
+    .popup-content-container {
+        width: 90%; /* عرض أكبر قليلاً في الشاشات الصغيرة جداً */
+        padding: 10px; /* تقليل المسافات الداخلية */
+    }
+}
+        
         .popup-left {
             flex: 1;
         }
