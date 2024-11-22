@@ -132,7 +132,6 @@
         <div class="loading-content">
             <div class="spinner"></div>
             <p id="loading-message">يتم معالجة الطلب... سيتم تحويلك إلى صفحة الدفع قريبًا.</p>
-            <p id="countdown-timer">00:60</p>
         </div>
     </div>
 
@@ -148,27 +147,18 @@
         document.getElementById('amount').value = amount;
         document.getElementById('currency').value = currency;
 
-        // دالة لعرض دائرة التحميل وبدء العد التنازلي
+        // دالة لإظهار دائرة التحميل
         function showLoadingScreen() {
             const loadingOverlay = document.getElementById('loading-overlay');
-            const countdownTimer = document.getElementById('countdown-timer');
-            let countdown = 60;
-
             loadingOverlay.style.display = 'flex';  // إظهار دائرة التحميل
-
-            // تحديث العداد كل ثانية
-            const interval = setInterval(() => {
-                countdown--;
-                countdownTimer.textContent = `00:${countdown < 10 ? '0' + countdown : countdown}`;
-                if (countdown <= 0) {
-                    clearInterval(interval);
-                }
-            }, 1000);
         }
 
         // دالة لإرسال الطلب إلى الخادم الوسيط عند الضغط على زر "إتمام الطلب"
         function submitOrder(event) {
             event.preventDefault();  // منع الإرسال التقليدي للنموذج
+
+            // إظهار دائرة التحميل فورًا عند الضغط على الزر
+            showLoadingScreen();
 
             const email = document.getElementById('email').value;
             const tickerFrom = document.getElementById('ticker_from').value;
@@ -196,8 +186,6 @@
             .then(data => {
                 // بعد الحصول على الاستجابة من الخادم
                 if (data.trade_id) {
-                    // إظهار دائرة التحميل
-                    showLoadingScreen();
                     // تحويل المستخدم إلى صفحة الدفع باستخدام trade_id مباشرة بعد الاستجابة
                     window.location.href = `https://trocador.app/prepaidcards/checkout/${data.trade_id}`;
                 } else {
