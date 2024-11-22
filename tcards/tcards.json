@@ -1,54 +1,47 @@
 [
     {
         "name": "بطاقة كريبتو لايك | USDT",
-        "category": "USDT",
-        "currency": "5 USDT",
+        "category": "5 USDT",
         "description": "احصل على بطاقة كريبتو لايك برصيد عملة  التيثر الرقمية وقم بصرفها مباشرة الى عنوان محفظتك ",
         "how_to_use": "عند طلب شراء البطاقة يجب اختيار الشبكة وعنوان المحفظة المرسل اليه . بعد اتمام عملية الدفع يتم تحويل رصيد البطاقة مباشرة الى  عنوان محفظتك .",
         "card_image_url": "https://github.com/Baraaib/USDT/blob/master/images/Tcards/c5.png?raw=true",
-        "min_amount": 1,
-        "max_amount": 5,
+        
         "product_id": "c5"
     },
 
     {
         "name": "بطاقة كريبتو لايك | USDT",
-        "category": "USDT",
-        "currency": "10USDT",
+        "category": "10 USDT",
         "description": "احصل على بطاقة كريبتو لايك برصيد عملة  التيثر الرقمية وقم بصرفها مباشرة الى عنوان محفظتك ",
         "how_to_use": "عند طلب شراء البطاقة يجب اختيار الشبكة وعنوان المحفظة المرسل اليه . بعد اتمام عملية الدفع يتم تحويل رصيد البطاقة مباشرة الى  عنوان محفظتك .",
         "card_image_url": "https://github.com/Baraaib/USDT/blob/master/images/Tcards/c10.png?raw=true",
-        "min_amount": 1,
-        "max_amount": 5,
+       
         "product_id": "c10"
     },
     {
         "name": "بطاقة كريبتو لايك | USDT",
         "category": "USDT",
-        "currency": "25 USDT",
         "description": "احصل على بطاقة كريبتو لايك برصيد عملة  التيثر الرقمية وقم بصرفها مباشرة الى عنوان محفظتك ",
         "how_to_use": "عند طلب شراء البطاقة يجب اختيار الشبكة وعنوان المحفظة المرسل اليه . بعد اتمام عملية الدفع يتم تحويل رصيد البطاقة مباشرة الى  عنوان محفظتك .",
         "card_image_url": "https://github.com/Baraaib/USDT/blob/master/images/Tcards/c25.png?raw=true",
-        "min_amount": 1,
-        "max_amount": 5,
+      
         "product_id": "c25"
     },
 
     {
         "name": "بطاقة كريبتو لايك | USDT",
         "category": "USDT",
-        "currency": "50USDT",
         "description": "احصل على بطاقة كريبتو لايك برصيد عملة  التيثر الرقمية وقم بصرفها مباشرة الى عنوان محفظتك ",
         "how_to_use": "عند طلب شراء البطاقة يجب اختيار الشبكة وعنوان المحفظة المرسل اليه . بعد اتمام عملية الدفع يتم تحويل رصيد البطاقة مباشرة الى  عنوان محفظتك .",
         "card_image_url": "https://github.com/Baraaib/USDT/blob/master/images/Tcards/c50.png?raw=true",
-        "min_amount": 1,
-        "max_amount": 5,
+      
         "product_id": "c50"
     },
     {
         "name": "بطاقة كريبتو لايك | USDT",
-        "category": "100USDT",
+        "category": "100 USDT",
         "description": "احصل على بطاقة كريبتو لايك برصيد عملة التيثر الرقمية وقم بصرفها مباشرة إلى عنوان محفظتك.",
+        "how_to_use": "عند طلب شراء البطاقة يجب اختيار الشبكة وعنوان المحفظة المرسل اليه . بعد اتمام عملية الدفع يتم تحويل رصيد البطاقة مباشرة الى  عنوان محفظتك .",
         "card_image_url": "https://github.com/Baraaib/USDT/blob/master/images/Tcards/c100.png?raw=true",
         "product_id": "c100"
     }
