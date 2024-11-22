@@ -191,7 +191,7 @@
 
     <script>
         let giftCardsData = [];
-
+    
         // دالة لجلب بيانات بطاقات الماستر كارد
         function fetchGiftCards(filePath) {
             fetch(filePath)
@@ -202,12 +202,12 @@
                 })
                 .catch(error => console.error('Error fetching gift card data:', error));
         }
-
+    
         // تحميل البطاقات عند تحميل الصفحة
         document.addEventListener('DOMContentLoaded', function() {
             fetchGiftCards('https://cryptolike.store/mastercard/mcards.json');
         });
-
+    
         // دالة لعرض البطاقات
         function displayGiftCards(cards) {
             const container = document.getElementById('giftcards-container');
@@ -217,47 +217,57 @@
                 cardDiv.className = 'giftcard';
                 cardDiv.innerHTML = `<img src="${card.card_image_url}" alt="${card.name}" class="card-image">`;
                 container.appendChild(cardDiv);
-
+    
                 // حدث النقر على البطاقة
                 cardDiv.addEventListener('click', function() {
                     showPopup(card);
                 });
             });
         }
-
-        function showPopup(card) {
-    console.log(card); // لمراقبة الكائن الذي يتم تمريره
-
-    document.getElementById('popup-title').innerText = `الاسم: ${card.name}`;
-    document.getElementById('popup-category').innerText = `الفئة: ${card.category || 'MasterCard'}`; // عرض الفئة أو استخدام القيمة الافتراضية 'MasterCard' إذا لم تكن متاحة
-    document.getElementById('popup-currency').innerText = `عملة البطاقة: ${card.currency}`; // إضافة عرض العملة بعد الفئة
-    document.getElementById('popup-description').innerText = `الوصف: ${card.description}`;
-    document.getElementById('popup-how-to-use').innerText = `كيفية الاستخدام: ${card.how_to_use}`;
-    document.getElementById('popup-product-id').innerText = `رقم المنتج: ${card.product_id}`;
-    document.getElementById('popup-image').src = card.card_image_url;
-
-    // تحقق من وجود السعر الإجمالي في الكائن
-    const totalPrice = card.total_price ? card.total_price : "السعر غير متاح";
-    document.getElementById('popup-price').innerText = `السعر الإجمالي: ${totalPrice}`;
     
-    // عرض الدول المحظورة
-    document.getElementById('popup-restricted-countries').innerText = `الدول المحظورة: ${card.restricted_countries}`;
-
-    const purchaseButton = document.getElementById('purchase-button');
-    purchaseButton.onclick = function () {
-        alert(`تم طلب شراء البطاقة: ${card.name}`);
-    };
-
+        function showPopup(card) {
+            console.log(card); // لمراقبة الكائن الذي يتم تمريره
+    
+            document.getElementById('popup-title').innerText = `الاسم: ${card.name}`;
+            document.getElementById('popup-category').innerText = `الفئة: ${card.category || 'MasterCard'}`;
+            document.getElementById('popup-currency').innerText = `عملة البطاقة: ${card.currency}`;
+            document.getElementById('popup-description').innerText = `الوصف: ${card.description}`;
+            document.getElementById('popup-how-to-use').innerText = `كيفية الاستخدام: ${card.how_to_use}`;
+            document.getElementById('popup-product-id').innerText = `رقم المنتج: ${card.product_id}`;
+            document.getElementById('popup-image').src = card.card_image_url;
+    
+            // تحقق من وجود السعر الإجمالي في الكائن
+            const totalPrice = card.total_price ? card.total_price : "السعر غير متاح";
+            document.getElementById('popup-price').innerText = `السعر الإجمالي: ${totalPrice}`;
+            
+            // عرض الدول المحظورة
+            document.getElementById('popup-restricted-countries').innerText = `الدول المحظورة: ${card.restricted_countries}`;
+    
+            const purchaseButton = document.getElementById('purchase-button');
+            purchaseButton.onclick = function () {
+                // استخراج المعلمات من رمز المنتج
+                const productId = card.product_id;
+                const amount = productId.replace('M', ''); // استخراج الرقم من رمز المنتج M10 يصبح 10، M25 يصبح 25، إلخ.
+                const currency = card.currency;
+                
+                // إنشاء رابط للانتقال إلى صفحة الاورد مع المعلمات (بدون تحديد طريقة الدفع في الرابط هنا)
+                const orderUrl = `https://cryptolike.store/mastercard/order?amount=${amount}&provider=MyPrepaidCenter&currency_code=USD&currency=${currency}&email=`;
+    
+                // تحويل المستخدم إلى صفحة الاورد مع المعلمات
+                window.location.href = orderUrl;
+            };
+    
             // إظهار النافذة المنبثقة
             const popup = document.querySelector('.popup');
             popup.style.display = 'flex';
         }
-
+    
         // دالة إغلاق النافذة المنبثقة
         document.querySelector('.popup-close').addEventListener('click', function() {
             const popup = document.querySelector('.popup');
             popup.style.display = 'none';
         });
     </script>
+    
 </body>
 </html>
