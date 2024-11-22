@@ -110,6 +110,20 @@
         // تعيين المعلمات المخفية في النموذج بناءً على القيم التي تم إرسالها من صفحة البطاقات
         document.getElementById('amount').value = amount;
         document.getElementById('currency').value = currency;
+
+        
+         // دالة للتحقق من البريد الإلكتروني
+    document.getElementById('email').addEventListener('input', function() {
+        const emailField = document.getElementById('email');
+        const warningMessage = document.getElementById('email-warning');
+        
+        // التحقق إذا كان البريد الإلكتروني يحتوي على "@" ويبدو صالحاً
+        if (emailField.value.includes('@')) {
+            warningMessage.style.display = 'none';  // إخفاء التنبيه
+        } else {
+            warningMessage.style.display = 'block';  // إظهار التنبيه
+        }
+    });
     </script>
 </body>
 </html>
