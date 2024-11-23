@@ -24,17 +24,10 @@ body {
     overflow-x: auto; /* إضافة شريط تمرير أفقي في حال تجاوز المحتوى عرض النافذة */
 }
 
-/* عند الشاشات الصغيرة (مثل الهواتف)، نقوم بتغيير الأعمدة */
+/* عند الشاشات الصغيرة، نقوم بعرض عمودين فقط */
 @media (max-width: 768px) {
     .fruit-grid {
         grid-template-columns: repeat(2, 1fr); /* عرض عمودين فقط */
-    }
-}
-
-/* عند الشاشات المتوسطة (مثل الأجهزة اللوحية)، نقوم بعرض 3 أعمدة */
-@media (max-width: 1024px) {
-    .fruit-grid {
-        grid-template-columns: repeat(3, 1fr); /* عرض 3 أعمدة */
     }
 }
 
@@ -113,6 +106,7 @@ body {
 .read-more:hover {
     background: #388E3C;
 }
+
 
     </style>
 </head>
