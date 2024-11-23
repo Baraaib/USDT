@@ -36,40 +36,7 @@
         .fruit-card:hover {
             transform: scale(1.05);
         }
-  /* تنسيق النافذة المنبثقة */
-.popup {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-}
-
-.popup-content-container {
-    background: white;
-    width: 50%; /* عرض النافذة على الشاشات الكبيرة */
-    padding: 20px;
-    border-radius: 8px;
-    display: flex;
-    gap: 20px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-    flex-direction: column;
-    overflow: hidden; /* منع المحتوى من تجاوز النافذة */
-    max-height: 80vh; /* أقصى ارتفاع للنافذة لتجنب تجاوز المحتوى */
-}
-
-/* المحاذاة في الشاشات الصغيرة */
-@media (max-width: 768px) {
-    .popup-content-container {
-        width: 70%; /* تصغير العرض في الشاشات الأصغر */
-    }
-}
-
-/* تحسين التنسيق في الشاشات الصغيرة جداً */
+ /* تحسين التنسيق في الشاشات الصغيرة جداً */
 @media (max-width: 480px) {
     .popup-content-container {
         width: 90%; /* عرض أكبر قليلاً في الشاشات الصغيرة جداً */
@@ -175,21 +142,13 @@
     </style>
     
 
-   <!-- النافذة المنبثقة -->
-   <div class="popup">
-    <div class="popup-content-container">
-        <button class="popup-close">إغلاق</button>
-        <!-- القسم الأيسر -->
-        <div class="popup-left">
-            <img id="popup-image" class="popup-image" src="" alt="Card Image">
-        </div>
-        <!-- القسم الأيمن -->
-        <div class="popup-right">
-            <div>
-                <h2 id="popup-title"></h2>
-                <p id="popup-description"></p>
-            
-        </div>
+<!-- النافذة المنبثقة -->
+<div class="popup" id="popup">
+    <div class="popup-content">
+        <img id="popup-image" src="" alt="Fruit Image">
+        <h2 id="popup-name"></h2>
+        <p id="popup-description"></p>
+        <button class="popup-close" id="popup-close">إغلاق</button>
     </div>
 </div>
 
