@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>فوائد الفواكه</title>
+    <title>أفضل تطبيقات أندرويد</title>
     <style>
 body {
     background-color: #000000;
@@ -106,13 +106,11 @@ body {
 .read-more:hover {
     background: #388E3C;
 }
-
-
     </style>
 </head>
 <body>
 
-    <h1 class="main-title">فوائد الفواكه</h1>
+    <h1 class="main-title">أفضل تطبيقات أندرويد</h1>
     <div class="fruit-grid" id="fruit-grid"></div>
     
     <style>
@@ -128,7 +126,7 @@ body {
 <!-- النافذة المنبثقة -->
 <div class="popup" id="popup">
     <div class="popup-content">
-        <img id="popup-image" src="" alt="Fruit Image">
+        <img id="popup-image" src="" alt="App Image">
         <h2 id="popup-name"></h2>
         <p id="popup-description"></p>
         <button class="read-more" id="popup-read-more" onclick="window.location.href = '';">قراءة المزيد</button>
@@ -137,8 +135,8 @@ body {
 </div>
 
 <script>
-    // دالة لجلب بيانات الفواكه
-    function fetchFruits(filePath) {
+    // دالة لجلب بيانات التطبيقات
+    function fetchApps(filePath) {
         fetch(filePath)
             .then(response => {
                 if (!response.ok) {
@@ -148,44 +146,44 @@ body {
             })
             .then(data => {
                 if (!Array.isArray(data) || data.length === 0) {
-                    displayNoFruitsMessage();
+                    displayNoAppsMessage();
                 } else {
-                    displayFruits(data);
+                    displayApps(data);
                 }
             })
-            .catch(error => console.error('Error fetching fruits data:', error));
+            .catch(error => console.error('Error fetching apps data:', error));
     }
 
-    // دالة لعرض الفواكه
-    function displayFruits(fruits) {
+    // دالة لعرض التطبيقات
+    function displayApps(apps) {
         const grid = document.getElementById('fruit-grid');
         grid.innerHTML = ''; // تنظيف الشبكة قبل الإضافة
-        fruits.forEach(fruit => {
+        apps.forEach(app => {
             const card = document.createElement('div');
             card.className = 'fruit-card';
             card.innerHTML = `
-                <img src="${fruit.card_image_url || 'default-image.jpg'}" alt="${fruit.name || 'فاكهة'}">
-                <h3>${fruit.name || 'اسم غير متاح'}</h3>
+                <img src="${app.card_image_url || 'default-image.jpg'}" alt="${app.name || 'تطبيق'}">
+                <h3>${app.name || 'اسم التطبيق غير متاح'}</h3>
             `;
-            card.addEventListener('click', () => showPopup(fruit));
+            card.addEventListener('click', () => showPopup(app));
             grid.appendChild(card);
         });
     }
 
-    // دالة لعرض رسالة عند عدم وجود فواكه
-    function displayNoFruitsMessage() {
+    // دالة لعرض رسالة عند عدم وجود تطبيقات
+    function displayNoAppsMessage() {
         const grid = document.getElementById('fruit-grid');
-        grid.innerHTML = '<p>لا توجد فواكه متاحة حالياً.</p>';
+        grid.innerHTML = '<p>لا توجد تطبيقات متاحة حالياً.</p>';
     }
 
     // دالة لعرض النافذة المنبثقة
-    function showPopup(fruit) {
-        document.getElementById('popup-name').innerText = fruit.name || 'اسم غير متاح';
-        document.getElementById('popup-description').innerText = fruit.description || 'لا يوجد وصف متاح.';
-        document.getElementById('popup-image').src = fruit.card_image_url || 'default-image.jpg';
+    function showPopup(app) {
+        document.getElementById('popup-name').innerText = app.name || 'اسم التطبيق غير متاح';
+        document.getElementById('popup-description').innerText = app.description || 'لا يوجد وصف متاح.';
+        document.getElementById('popup-image').src = app.card_image_url || 'default-image.jpg';
         // تعيين الرابط لزر "قراءة المزيد"
         document.getElementById('popup-read-more').onclick = function () {
-            window.location.href = fruit.link || '#';
+            window.location.href = app.link || '#';
         };
         document.getElementById('popup').style.display = 'flex';
     }
@@ -195,13 +193,11 @@ body {
         document.getElementById('popup').style.display = 'none';
     });
 
-    // جلب بيانات الفواكه عند تحميل الصفحة
+    // جلب بيانات التطبيقات عند تحميل الصفحة
     document.addEventListener('DOMContentLoaded', () => {
-        fetchFruits('https://cryptolike.store/f/f.json'); // تأكد من أن المسار صحيح.
+        fetchApps('https://cryptolike.store/f/f.json'); // تأكد من أن المسار صحيح.
     });
 </script>
-
-
 
 </body>
 </html>

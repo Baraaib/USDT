@@ -1,26 +1,5 @@
 [
     {
-        "name": "فوائد الفراولة",
-        "description": "الفراولة غنية بالفيتامينات والمعادن مثل فيتامين C والمنغنيز، وهي مضادة قوية للأكسدة. تساعد على تعزيز صحة الجهاز المناعي، وتحسين صحة البشرة، ودعم صحة القلب من خلال تقليل الكوليسترول الضار.",
-        "card_image_url": "https://cdn.leonardo.ai/users/898f702d-c55f-4d2d-a2c2-caa5ada0180d/generations/a66ef2e7-288f-4f44-b347-dd9848593aab/Leonardo_Phoenix_A_highly_detailed_realistic_and_glossy_threed_2.jpg",
-        "link": "https://example.com/benefits-of-strawberry"
-
-    },
-    {
-        "name": "فوائد الليمون",
-        "description": "الفراولة غنية بالفيتامينات والمعادن مثل فيتامين C والمنغنيز، وهي مضادة قوية للأكسدة. تساعد على تعزيز صحة الجهاز المناعي، وتحسين صحة البشرة، ودعم صحة القلب من خلال تقليل الكوليسترول الضار.",
-        "card_image_url": "https://cdn.leonardo.ai/users/898f702d-c55f-4d2d-a2c2-caa5ada0180d/generations/a5022068-bddc-4f61-aace-f5f434e0c23a/Leonardo_Phoenix_A_vibrantly_yellow_succulent_lemon_takes_cent_0.jpg",
-        "link": "https://cryptolike.store"
-
-    },
-    {
-        "name": "فوائد البرتقال",
-        "description": "الفراولة غنية بالفيتامينات والمعادن مثل فيتامين C والمنغنيز، وهي مضادة قوية للأكسدة. تساعد على تعزيز صحة الجهاز المناعي، وتحسين صحة البشرة، ودعم صحة القلب من خلال تقليل الكوليسترول الضار.",
-        "card_image_url": "https://cdn.leonardo.ai/users/898f702d-c55f-4d2d-a2c2-caa5ada0180d/generations/688c0381-1e10-4732-86b1-8b4ab292df53/Leonardo_Phoenix_A_highly_detailed_realistic_and_vibrant_orang_0.jpg",
-        "link": "https://example.com/benefits-of-strawberry"
-
-    },
-    {
         "name": "1",
         "description": "الفراولة غنية بالفيتامينات والمعادن مثل فيتامين C والمنغنيز، وهي مضادة قوية للأكسدة. تساعد على تعزيز صحة الجهاز المناعي، وتحسين صحة البشرة، ودعم صحة القلب من خلال تقليل الكوليسترول الضار.",
         "card_image_url": "https://cdn.leonardo.ai/users/898f702d-c55f-4d2d-a2c2-caa5ada0180d/generations/a66ef2e7-288f-4f44-b347-dd9848593aab/Leonardo_Phoenix_A_highly_detailed_realistic_and_glossy_threed_2.jpg",
@@ -30,12 +9,33 @@
     {
         "name": "2",
         "description": "الفراولة غنية بالفيتامينات والمعادن مثل فيتامين C والمنغنيز، وهي مضادة قوية للأكسدة. تساعد على تعزيز صحة الجهاز المناعي، وتحسين صحة البشرة، ودعم صحة القلب من خلال تقليل الكوليسترول الضار.",
+        "card_image_url": "https://cdn.leonardo.ai/users/898f702d-c55f-4d2d-a2c2-caa5ada0180d/generations/a5022068-bddc-4f61-aace-f5f434e0c23a/Leonardo_Phoenix_A_vibrantly_yellow_succulent_lemon_takes_cent_0.jpg",
+        "link": "https://cryptolike.store"
+
+    },
+    {
+        "name": "3",
+        "description": "الفراولة غنية بالفيتامينات والمعادن مثل فيتامين C والمنغنيز، وهي مضادة قوية للأكسدة. تساعد على تعزيز صحة الجهاز المناعي، وتحسين صحة البشرة، ودعم صحة القلب من خلال تقليل الكوليسترول الضار.",
+        "card_image_url": "https://cdn.leonardo.ai/users/898f702d-c55f-4d2d-a2c2-caa5ada0180d/generations/688c0381-1e10-4732-86b1-8b4ab292df53/Leonardo_Phoenix_A_highly_detailed_realistic_and_vibrant_orang_0.jpg",
+        "link": "https://exasample.com/benefits-of-strawberry"
+
+    },
+    {
+        "name": "4",
+        "description": "الفراولة غنية بالفيتامينات والمعادن مثل فيتامين C والمنغنيز، وهي مضادة قوية للأكسدة. تساعد على تعزيز صحة الجهاز المناعي، وتحسين صحة البشرة، ودعم صحة القلب من خلال تقليل الكوليسترول الضار.",
         "card_image_url": "https://cdn.leonardo.ai/users/898f702d-c55f-4d2d-a2c2-caa5ada0180d/generations/a66ef2e7-288f-4f44-b347-dd9848593aab/Leonardo_Phoenix_A_highly_detailed_realistic_and_glossy_threed_2.jpg",
         "link": "https://example.com/benefits-of-strawberry"
 
     },
     {
-        "name": "3",
+        "name": "5",
+        "description": "الفراولة غنية بالفيتامينات والمعادن مثل فيتامين C والمنغنيز، وهي مضادة قوية للأكسدة. تساعد على تعزيز صحة الجهاز المناعي، وتحسين صحة البشرة، ودعم صحة القلب من خلال تقليل الكوليسترول الضار.",
+        "card_image_url": "https://img.utdstc.com/icon/cc2/f16/cc2f16d1ed6181fe6b65e82189e7fffaf70cb564f850cb94ef4a9ac14305da33:100",
+        "link": "https://viber.ar.uptodown.com/windows"
+
+    },
+    {
+        "name": "6",
         "description": "الفراولة غنية بالفيتامينات والمعادن مثل فيتامين C والمنغنيز، وهي مضادة قوية للأكسدة. تساعد على تعزيز صحة الجهاز المناعي، وتحسين صحة البشرة، ودعم صحة القلب من خلال تقليل الكوليسترول الضار.",
         "card_image_url": "https://cdn.leonardo.ai/users/898f702d-c55f-4d2d-a2c2-caa5ada0180d/generations/a66ef2e7-288f-4f44-b347-dd9848593aab/Leonardo_Phoenix_A_highly_detailed_realistic_and_glossy_threed_2.jpg",
         "link": "https://example.com/benefits-of-strawberry"
