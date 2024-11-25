@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Buy Gift Cards</title>
-  <!-- رابط مكتبة PayPal SDK مع Client ID الخاص ببيئة Live -->
   <script src="https://www.paypal.com/sdk/js?client-id=AebTYwuF5FiBoP9LTbFvsWOqv6V4anV1iky4Y9GUCzuhdCObeNPXqqUQhIWL96HLY63xsEqmZOPoyNQJ&components=buttons"></script>
   <style>
     body {
@@ -51,18 +50,51 @@
       display: flex;
       justify-content: center;
     }
+    .alert {
+      font-size: 14px;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 4px;
+      color: #fff;
+      background-color: #f44336; /* Red background */
+      text-align: center;
+    }
+    .alert-info {
+      background-color: #2196F3; /* Blue background */
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+        max-width: 90%;
+      }
+      h1 {
+        font-size: 24px;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>Buy Gift Cards</h1>
-  <p>Choose the value of the gift card and complete your payment:</p>
+  <div class="container">
+    <h1>Buy Gift Cards</h1>
+    <p>Choose the value of the gift card and complete your payment:</p>
 
-  <!-- حقل البريد الإلكتروني للمشتري -->
-  <label for="buyer-email">Email Address:</label>
-  <input type="email" id="buyer-email" placeholder="Enter your email" required>
+    <!-- تنبيه البريد الإلكتروني المرتبط بـ PayPal -->
+    <div class="alert">
+      <strong>Important:</strong> Please use the same email address that is linked to your PayPal account to ensure the gift card is sent correctly.
+    </div>
 
-  <!-- حاوية زر PayPal -->
-  <div id="paypal-button-container"></div>
+    <!-- تنبيه في حال الدفع باستخدام بطاقة الائتمان -->
+    <div class="alert alert-info">
+      <strong>Note:</strong> If you're paying with a credit card, please enter the email address where you want to receive the gift card.
+    </div>
+
+    <!-- حقل البريد الإلكتروني للمشتري -->
+    <label for="buyer-email">Email Address:</label>
+    <input type="email" id="buyer-email" placeholder="Enter your email" required>
+
+    <!-- حاوية زر PayPal -->
+    <div id="paypal-button-container"></div>
+  </div>
 
   <script>
     // إضافة زر PayPal إلى الصفحة
