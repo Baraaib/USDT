@@ -6,6 +6,52 @@
   <title>Buy Gift Cards</title>
   <!-- رابط مكتبة PayPal SDK مع Client ID الخاص ببيئة Live -->
   <script src="https://www.paypal.com/sdk/js?client-id=AebTYwuF5FiBoP9LTbFvsWOqv6V4anV1iky4Y9GUCzuhdCObeNPXqqUQhIWL96HLY63xsEqmZOPoyNQJ&components=buttons"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f7fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    p {
+      text-align: center;
+      color: #777;
+      margin-bottom: 20px;
+    }
+    label {
+      font-size: 14px;
+      margin-bottom: 8px;
+      display: block;
+    }
+    input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    .paypal-button-container {
+      display: flex;
+      justify-content: center;
+    }
+  </style>
 </head>
 <body>
   <h1>Buy Gift Cards</h1>
@@ -36,7 +82,7 @@
         return actions.order.create({
           purchase_units: [{
             amount: {
-              value: '10.00'  // قيمة البطاقة التي سيتم دفعها (مثال: 10.00 دولار)
+              value: '2.00'  // قيمة البطاقة التي سيتم دفعها (مثال: 10.00 دولار)
             },
             payer: {
               email_address: email  // تمرير البريد الإلكتروني هنا
